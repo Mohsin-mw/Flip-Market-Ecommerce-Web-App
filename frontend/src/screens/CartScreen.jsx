@@ -18,6 +18,10 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/Slices/Cart/CartAction";
+import {
+  addCartItemToLocalStorage,
+  removeCartItem,
+} from "../store/Slices/Cart/CartSlice";
 
 const CartScreen = () => {
   const { id } = useParams();
@@ -33,8 +37,9 @@ const CartScreen = () => {
     }
   }, [dispatch, id, qty]);
 
-  const removeItemHandler = () => {
-    console.log("Remoed: ", id);
+  const removeItemHandler = (id) => {
+    dispatch(removeCartItem(cartItems.find((x) => x.product === id)));
+    dispatch(addCartItemToLocalStorage());
   };
 
   const checkoutHandler = () => {
@@ -82,7 +87,7 @@ const CartScreen = () => {
                       type="Button"
                       variant="dark"
                       className="d-flex align-items-center rounded"
-                      onClick={() => removeItemHandler()}
+                      onClick={() => removeItemHandler(item.product)}
                     >
                       <i className="fas fa-trash"></i>
                     </Button>
@@ -98,7 +103,7 @@ const CartScreen = () => {
           <ListGroup variant="flush">
             <ListGroupItem>
               <h4 className="my-5">
-                Order Info <i class="fa-solid fa-circle-info"></i>
+                Order Info <i className="fa-solid fa-circle-info"></i>
               </h4>
               <Row>
                 <Col>
