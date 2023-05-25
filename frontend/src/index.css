@@ -1,0 +1,36 @@
+main {
+  min-height: 80vh;
+}
+.rating span {
+  margin: 0.1rem;
+}
+#loader-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#Loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#Loader h3 {
+  margin-top: 15px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+.sub-text {
+  font-size: 1.2rem;
+  color: #999;
+}

@@ -1,0 +1,135 @@
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
+import { toggleLoading } from "../store/Slices/App/AppSlice";
+import Rating from "../components/Rating";
+import Loader from "../components/loader";
+import productDetail from "../store/Slices/SingleProduct/SingleProductAction";
+import Toastify from "../components/Toastify";
+
+const ProductScreen = () => {
+  const { id } = useParams();
+  const [qty, setqty] = useState(1);
+  const productDetails = useSelector((state) => state.singleProduct);
+  const { error, product } = productDetails;
+  const app = useSelector((state) => state.app);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const Load = async () => {
+    dispatch(toggleLoading(true));
+    productDetail(dispatch, id);
+    dispatch(toggleLoading(false));
+  };
+
+  useEffect(() => {
+    Load();
+  }, []);
+
+  const addCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
+
+  return (
+    <div>
+      <Link to="/" className="btn btn-light my-3">
+        Go Back
+      </Link>
+      {app.isLoading ? (
+        <Loader />
+      ) : error ? (
+        Toastify(error, "error")
+      ) : (
+        <Row>
+          <Col md={6}>
+            <Image src={product.image} alt={product.name} fluid rounded />
+          </Col>
+          <Col md={3}>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h3>{product.name}</h3>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Rating
+                  value={product.rating}
+                  text={`${product.numReviews} reviews`}
+                  color={"#f8e825"}
+                />
+              </ListGroup.Item>
+              <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+              <ListGroup.Item>
+                Description: {product.description}
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col md={3}>
+            <Card>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Price:</Col>
+                    <Col>
+                      <strong>${product.price}</strong>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Status</Col>
+                    <Col>
+                      <strong>
+                        {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                      </strong>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <Row className="align-items-center">
+                      <Col>Quantity</Col>
+                      <Col xm="auto">
+                        <Form.Control
+                          as="select"
+                          value={qty}
+                          onChange={(e) => setqty(e.target.value)}
+                        >
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
+                <ListGroup.Item className="my-4">
+                  <Button
+                    className="btn-block rounded"
+                    type="button"
+                    onClick={addCartHandler}
+                    disabled={product.countInStock == 0}
+                  >
+                    Add to Cart
+                    <i className="mx-3 fa-solid fa-cart-shopping"></i>
+                  </Button>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+        </Row>
+      )}
+    </div>
+  );
+};
+
+export default ProductScreen;

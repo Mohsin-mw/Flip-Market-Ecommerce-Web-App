@@ -1,0 +1,11 @@
+# NPM packages folder.
+/frontend/node_modules
+
+# Build files
+/frontend/dist/
+
+# lock files
+/frontend/package-lock.json
+
+# IDE files
+.idea
