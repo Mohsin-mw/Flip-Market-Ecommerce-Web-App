@@ -24,7 +24,9 @@ const HomeScreen = () => {
 
   return (
     <>
-      <h3>Latest Products</h3>
+      <h3>
+        Latest Products <i className="mx-3 fa-solid fa-house"></i>{" "}
+      </h3>
       {app.isLoading ? (
         <Loader />
       ) : error ? (

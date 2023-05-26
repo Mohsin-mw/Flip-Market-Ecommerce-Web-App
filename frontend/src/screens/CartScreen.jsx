@@ -48,7 +48,9 @@ const CartScreen = () => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h1>
+          Shopping Cart <i className="mx-2 fa-solid fa-cart-shopping"></i>
+        </h1>
         {cartItems.length === 0 ? (
           <Alert variant="info">
             Your Cart is empty <Link to="/">Go Back</Link>{" "}

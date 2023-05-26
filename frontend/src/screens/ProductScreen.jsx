@@ -41,9 +41,10 @@ const ProductScreen = () => {
 
   return (
     <div>
-      <Link to="/" className="btn btn-light my-3">
+      <Button className="btn  rounded my-3" onClick={() => navigate(-1)}>
+        <i className="mx-2 fa-solid fa-arrow-left"></i>
         Go Back
-      </Link>
+      </Button>
       {app.isLoading ? (
         <Loader />
       ) : error ? (

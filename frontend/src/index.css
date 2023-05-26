@@ -34,3 +34,7 @@ a:hover {
   font-size: 1.2rem;
   color: #999;
 }
+
+h1 {
+  margin: 2.8rem 0 !important;
+}

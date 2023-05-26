@@ -23,7 +23,7 @@ const Product = ({ product }) => {
           </div>
         </Card.Text>
         <Card.Text as="h3">
-          <i class=" my-4 fa-solid fa-dollar-sign"></i>
+          <i className=" my-4 fa-solid fa-dollar-sign"></i>
           {product.price}
         </Card.Text>
       </Card.Body>
