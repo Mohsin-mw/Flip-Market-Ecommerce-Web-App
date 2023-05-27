@@ -17,7 +17,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../store/Slices/Cart/CartAction";
+import { addToCart } from "../store/Slices/Cart/CartFunctions";
 import {
   addCartItemToLocalStorage,
   removeCartItem,

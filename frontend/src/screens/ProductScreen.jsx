@@ -13,7 +13,7 @@ import {
 import { toggleLoading } from "../store/Slices/App/AppSlice";
 import Rating from "../components/Rating";
 import Loader from "../components/loader";
-import productDetail from "../store/Slices/SingleProduct/SingleProductAction";
+import productDetail from "../store/Slices/SingleProduct/SingleProductFunctions";
 import Toastify from "../components/Toastify";
 
 const ProductScreen = () => {

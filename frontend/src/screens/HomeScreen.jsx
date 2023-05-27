@@ -5,7 +5,7 @@ import { toggleLoading } from "../store/Slices/App/AppSlice";
 import Product from "../components/Product";
 import Loader from "../components/loader";
 import Toastify from "../components/Toastify";
-import listProducts from "../store/Slices/Product/ProductAction";
+import listProducts from "../store/Slices/Product/ProductFunctions";
 
 const HomeScreen = () => {
   const { products, error } = useSelector((state) => state.productList);
