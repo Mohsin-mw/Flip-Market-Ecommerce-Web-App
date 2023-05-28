@@ -5,5 +5,5 @@ export function getProducts() {
 }
 
 export function getProduct(id) {
-  return axiosClient().get(`/product/${id}`, { timeout: 100 });
+  return axiosClient().get(`/products/${id}`, { timeout: 100 });
 }
