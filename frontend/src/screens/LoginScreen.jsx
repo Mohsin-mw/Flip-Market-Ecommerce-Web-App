@@ -4,7 +4,6 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { UserLogin } from "../store/Slices/User/UserFunction";
-import Loader from "../components/loader";
 import Toastify from "../components/Toastify";
 import FormContainer from "../components/FormContainer";
 
@@ -20,12 +19,12 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(-1);
+      navigate("/");
     }
-  }, []);
+  }, [navigate, userInfo, redirect]);
   const submitHandler = async (e) => {
     e.preventDefault();
-    await UserLogin(dispatch, email, password);
+    UserLogin(dispatch, email, password);
   };
   return (
     <FormContainer>

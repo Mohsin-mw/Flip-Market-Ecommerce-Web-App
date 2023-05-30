@@ -13,5 +13,5 @@ const app = createSlice({
   },
 });
 
-export const { toggleLoading } = app.actions;
+export const { toggleLoading, isLoggedIn } = app.actions;
 export default app.reducer;
