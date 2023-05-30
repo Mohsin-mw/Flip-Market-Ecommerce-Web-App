@@ -13,7 +13,7 @@ const listProducts = async (dispatch) => {
         dispatch(productListSucccess(response.data));
       })
       .catch((error) => {
-        dispatch(requestProductFail("Network Error!"));
+        dispatch(requestProductFail("Request timed out"));
       });
   } catch {}
 };

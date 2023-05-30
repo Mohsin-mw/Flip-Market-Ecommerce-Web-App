@@ -8,7 +8,6 @@ const Loader = () => {
       {app.isLoading && (
         <div id="Loader">
           <Spinner animation="grow" />
-          <h3>Please wait...</h3>
         </div>
       )}
     </>

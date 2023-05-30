@@ -14,7 +14,7 @@ const productDetail = async (dispatch, product_id) => {
         dispatch(productSucccess(response.data));
       })
       .catch((error) => {
-        dispatch(productFail("Error: " + error.message));
+        dispatch(productFail("Request timed out"));
       });
   } catch (error) {}
 };

@@ -15,6 +15,7 @@ import Rating from "../components/Rating";
 import Loader from "../components/loader";
 import productDetail from "../store/Slices/SingleProduct/SingleProductFunctions";
 import Toastify from "../components/Toastify";
+import ErrorImage from "../assets/ErrorBadRequest.svg";
 
 const ProductScreen = () => {
   const { id } = useParams();
@@ -26,12 +27,14 @@ const ProductScreen = () => {
   const navigate = useNavigate();
 
   const Load = async () => {
-    dispatch(toggleLoading(true));
-    productDetail(dispatch, id);
-    dispatch(toggleLoading(false));
+    await productDetail(dispatch, id);
+    setTimeout(() => {
+      dispatch(toggleLoading(false));
+    }, 500);
   };
 
   useEffect(() => {
+    dispatch(toggleLoading(true));
     Load();
   }, []);
 
@@ -48,7 +51,10 @@ const ProductScreen = () => {
       {app.isLoading ? (
         <Loader />
       ) : error ? (
-        Toastify(error, "error")
+        <>
+          {Toastify(error, "error")}
+          <img className="error-image" src={ErrorImage} alt="" />
+        </>
       ) : (
         <Row>
           <Col md={6}>

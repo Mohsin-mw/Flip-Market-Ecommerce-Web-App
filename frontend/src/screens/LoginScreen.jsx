@@ -4,6 +4,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { UserLogin } from "../store/Slices/User/UserFunction";
+import Loader from "../components/loader";
 import Toastify from "../components/Toastify";
 import FormContainer from "../components/FormContainer";
 
@@ -15,23 +16,21 @@ const LoginScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.user);
-  const app = useSelector((state) => state.app);
   const { userInfo, error } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
       navigate(-1);
     }
-  }, [userInfo, email, password]);
-  const submitHandler = (e) => {
+  }, []);
+  const submitHandler = async (e) => {
     e.preventDefault();
-    UserLogin(dispatch, email, password);
+    await UserLogin(dispatch, email, password);
   };
   return (
     <FormContainer>
       <h1>Sign In</h1>
       {error && Toastify(error, "error")}
-      {app.isLoading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>

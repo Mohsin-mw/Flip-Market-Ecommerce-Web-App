@@ -6,6 +6,7 @@ import Product from "../components/Product";
 import Loader from "../components/loader";
 import Toastify from "../components/Toastify";
 import listProducts from "../store/Slices/Product/ProductFunctions";
+import ErrorImage from "../assets/ErrorBadRequest.svg";
 
 const HomeScreen = () => {
   const { products, error } = useSelector((state) => state.productList);
@@ -13,12 +14,14 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const Load = async () => {
-    dispatch(toggleLoading(true));
-    listProducts(dispatch);
-    dispatch(toggleLoading(false));
+    await listProducts(dispatch);
+    setTimeout(() => {
+      dispatch(toggleLoading(false));
+    }, 500);
   };
 
   useEffect(() => {
+    dispatch(toggleLoading(true));
     Load();
   }, []);
 
@@ -30,7 +33,10 @@ const HomeScreen = () => {
       {app.isLoading ? (
         <Loader />
       ) : error ? (
-        Toastify(error, "error")
+        <>
+          {Toastify(error, "error")}
+          <img className="error-image" src={ErrorImage} alt="" />
+        </>
       ) : (
         <Row>
           {products.map((product) => (
