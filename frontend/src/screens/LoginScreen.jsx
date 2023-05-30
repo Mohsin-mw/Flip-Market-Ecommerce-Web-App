@@ -28,12 +28,17 @@ const LoginScreen = () => {
   };
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1>
+        Sign In <i class="my-3 fa-solid fa-user"></i>
+      </h1>
       {error && Toastify(error, "error")}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>
+            <i className="mx-1 fa-solid fa-envelope"></i>Email Address
+          </Form.Label>
           <Form.Control
+            className="rounded"
             type="email"
             placeholder="Enter Email"
             value={email}
@@ -41,16 +46,20 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            <i className="mx-1 fa-solid fa-lock"></i> Password
+          </Form.Label>
           <Form.Control
+            className="rounded"
             type="password"
             placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <Button className="rounded" type="submit" variant="primary">
           Sign In
+          <i class="mx-2 fa-solid fa-right-to-bracket"></i>
         </Button>
       </Form>
       <Row className="py-3">

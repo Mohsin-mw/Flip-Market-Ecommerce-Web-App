@@ -21,9 +21,13 @@ const userSlice = createSlice({
     userLoginFail: (state, action) => {
       return { error: action.payload };
     },
+    userLogout: (state, action) => {
+      localStorage.removeItem("user");
+      return {};
+    },
   },
 });
 
-export const { userLoginRequest, userLoginSuccess, userLoginFail } =
+export const { userLoginRequest, userLoginSuccess, userLoginFail, userLogout } =
   userSlice.actions;
 export default userSlice.reducer;

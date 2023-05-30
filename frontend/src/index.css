@@ -55,3 +55,7 @@ h1 {
     opacity: 1;
   }
 }
+
+form div {
+  margin: 1.8rem;
+}
