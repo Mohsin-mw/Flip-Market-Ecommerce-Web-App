@@ -6,3 +6,11 @@ export function LoginUser(email, password) {
     password: password,
   });
 }
+
+export function RegisterUser(name, email, password) {
+  return axiosClient().post("/users/register/", {
+    name: name,
+    email: email,
+    password: password,
+  });
+}

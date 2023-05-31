@@ -29,7 +29,7 @@ const LoginScreen = () => {
   return (
     <FormContainer>
       <h1>
-        Sign In <i class="my-3 fa-solid fa-user"></i>
+        Sign In <i className="my-3 fa-solid fa-user"></i>
       </h1>
       {error && Toastify(error, "error")}
       <Form onSubmit={submitHandler}>
@@ -59,7 +59,7 @@ const LoginScreen = () => {
         </Form.Group>
         <Button className="rounded" type="submit" variant="primary">
           Sign In
-          <i class="mx-2 fa-solid fa-right-to-bracket"></i>
+          <i className="mx-2 fa-solid fa-right-to-bracket"></i>
         </Button>
       </Form>
       <Row className="py-3">

@@ -9,9 +9,10 @@ class UserSerializer(serializers.ModelSerializer):
     _id = serializers.SerializerMethodField(read_only=True)
     isAdmin = serializers.SerializerMethodField(read_only=True)
 
+
     class Meta:
         model = User
-        fields = ['id', '_id', 'username', 'email', 'name', '_id', 'isAdmin']
+        fields = ['id', '_id', 'username', 'email', 'name', '_id', 'isAdmin', 'password']
 
     def get__id(self, obj):
         return obj.id
@@ -30,9 +31,10 @@ class UserSerializer(serializers.ModelSerializer):
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
 
+
     class Meta:
         model = User
-        fields = ['id', '_id', 'username', 'email', 'name', '_id', 'isAdmin', 'token']
+        fields = ['id', '_id', 'username', 'email', 'name', '_id', 'isAdmin', 'token', 'password']
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)
