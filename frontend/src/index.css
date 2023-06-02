@@ -1,6 +1,3 @@
-main {
-  min-height: 80vh;
-}
 .rating span {
   margin: 0.1rem;
 }
@@ -12,15 +9,26 @@ main {
 }
 
 #Loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.loader-body {
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #Loader h3 {
   margin-top: 15px;
+}
+.navbar {
+  color: var(--bs-white);
+}
+p {
+  color: var(--bs-white);
 }
 
 a {
@@ -58,4 +66,62 @@ h1 {
 
 form div {
   margin: 1.8rem;
+}
+
+.hide {
+  transition: all 0.01s;
+  opacity: 0;
+}
+.change-flex {
+  flex-direction: column;
+}
+.jGeaPm .head-div {
+  padding: 35px 30px !important;
+}
+.sidebar-form {
+  margin: 0 0.5rem;
+}
+
+.sidebar-form button {
+  position: absolute;
+  right: 0%;
+  background: transparent;
+  border: none;
+}
+
+.sidebar-form button:hover {
+  color: #919aa1 !important;
+  background-color: transparent !important;
+}
+.sidebar-form button:active {
+  color: #919aa1 !important;
+  background-color: transparent !important;
+}
+.sidebar-form button:focus {
+  color: #919aa1 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.button-icon-position {
+  right: 15% !important ;
+}
+.icon-suffix {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.footer {
+  color: var(--bs-white);
+  background-color: rgb(51, 51, 51);
+}
+.footer h6,
+.footer p,
+.footer a {
+  color: var(--bs-white) !important;
+}
+.page-screen {
+  min-height: 100vh;
+}
+.login-form div {
+  margin: 2.3rem 0 !important;
 }

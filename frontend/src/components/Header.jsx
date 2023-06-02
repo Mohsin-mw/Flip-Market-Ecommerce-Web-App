@@ -1,14 +1,15 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import { LinkContainer } from "react-router-bootstrap";
-import { Nav, Navbar, Container, Button, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Navbar, NavDropdown, Container } from "react-bootstrap";
 import { userLogout } from "../store/Slices/User/UserSlice";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
 import { userRegisterRemove } from "../store/Slices/UserRegister/UserRegister";
+import { BsInfoCircle } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
 const Header = () => {
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.user);
   const logoutHandler = () => {
     dispatch(toggleLoading(true));
     dispatch(userLogout());
@@ -17,44 +18,40 @@ const Header = () => {
   };
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-          <LinkContainer to="/">
-            <Navbar.Brand>ProShop</Navbar.Brand>
-          </LinkContainer>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <LinkContainer to="/cart">
-                <Nav.Link>
-                  <i className="fas fa-shopping-cart px-1" />
-                  Cart
-                </Nav.Link>
-              </LinkContainer>
-              {userLogin.userInfo ? (
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <div className="d-flex justify-content-center align-items-center text-center ">
+              <BsInfoCircle color="white" className="mx-2" />
+              Get Up to 40% OFF New-Season Style
+            </div>
+          </Navbar.Collapse>
+          <Navbar.Collapse className="justify-content-center">
+            {userInfo ? (
+              <>
                 <NavDropdown
-                  title={
-                    <i className="fas fa-user px-1">
-                      <span className="ms-2">{userLogin.userInfo.name}</span>
-                    </i>
-                  }
+                  title={<BsPersonCircle />}
+                  id="navbarScrollingDropdown"
                 >
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
+                  <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4" onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
+              </>
+            ) : (
+              <></>
+            )}
+          </Navbar.Collapse>
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text className="d-flex justify-content-center align-items-center text-center">
+              {userInfo ? (
+                <Link>Signed in as: {userInfo.name}</Link>
               ) : (
-                <LinkContainer to="/login">
-                  <Nav.Link>
-                    <i className="fas fa-user px-1" />
-                    Login
-                  </Nav.Link>
-                </LinkContainer>
+                <Link to="/login">Login/Register</Link>
               )}
-            </Nav>
+            </Navbar.Text>
           </Navbar.Collapse>
         </Container>
       </Navbar>

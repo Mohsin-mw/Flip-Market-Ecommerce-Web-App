@@ -26,10 +26,7 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <>
-      <h3>
-        Latest Products <i className="mx-3 fa-solid fa-house"></i>{" "}
-      </h3>
+    <div className="page-screen">
       {app.isLoading ? (
         <Loader />
       ) : error ? (
@@ -46,7 +43,7 @@ const HomeScreen = () => {
           ))}
         </Row>
       )}
-    </>
+    </div>
   );
 };
 

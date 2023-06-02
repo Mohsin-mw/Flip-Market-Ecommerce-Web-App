@@ -46,7 +46,7 @@ const CartScreen = () => {
     navigate("/login?redirect=shipping");
   };
   return (
-    <Row>
+    <Row className="page-screen">
       <Col md={8}>
         <h1>
           Shopping Cart <i className="mx-2 fa-solid fa-cart-shopping"></i>
@@ -100,7 +100,7 @@ const CartScreen = () => {
           </ListGroup>
         )}
       </Col>
-      <Col md={4} className="d-flex align-items-center">
+      <Col md={4} className="d-flex align-items-start mt-5">
         <Card className="rounded">
           <ListGroup variant="flush">
             <ListGroupItem>
