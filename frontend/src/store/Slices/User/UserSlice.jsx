@@ -16,6 +16,7 @@ const userSlice = createSlice({
       return {};
     },
     userLoginSuccess: (state, action) => {
+      localStorage.setItem("user", JSON.stringify(action.payload));
       return { userInfo: action.payload };
     },
     userLoginFail: (state, action) => {

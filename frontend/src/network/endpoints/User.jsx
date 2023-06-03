@@ -1,4 +1,4 @@
-import { axiosClient } from "../ApiClient";
+import { axiosClient, axiosClientWithToken } from "../ApiClient";
 
 export function LoginUser(email, password) {
   return axiosClient().post("/users/login/", {
@@ -13,4 +13,8 @@ export function RegisterUser(name, email, password) {
     email: email,
     password: password,
   });
+}
+
+export function UpdateUser(token, id) {
+  return axiosClientWithToken(token).get(`/users/${id}`);
 }

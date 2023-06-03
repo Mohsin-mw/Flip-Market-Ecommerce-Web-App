@@ -125,3 +125,6 @@ form div {
 .login-form div {
   margin: 2.3rem 0 !important;
 }
+.margin-auto {
+  margin: 0 auto;
+}

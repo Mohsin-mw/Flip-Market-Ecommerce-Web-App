@@ -11,3 +11,15 @@ export function axiosClient() {
     },
   });
 }
+
+export function axiosClientWithToken(token) {
+  const { app } = store.getState();
+  return axios.create({
+    baseURL: app.apiUrl,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}

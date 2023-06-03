@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, NavDropdown, Container } from "react-bootstrap";
 import { userLogout } from "../store/Slices/User/UserSlice";
 import { useDispatch } from "react-redux";
@@ -34,8 +35,10 @@ const Header = () => {
                   title={<BsPersonCircle />}
                   id="navbarScrollingDropdown"
                 >
-                  <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4" onClick={logoutHandler}>
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -47,7 +50,7 @@ const Header = () => {
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text className="d-flex justify-content-center align-items-center text-center">
               {userInfo ? (
-                <Link>Signed in as: {userInfo.name}</Link>
+                <Link to="/profile">Signed in as: {userInfo.name}</Link>
               ) : (
                 <Link to="/login">Login/Register</Link>
               )}

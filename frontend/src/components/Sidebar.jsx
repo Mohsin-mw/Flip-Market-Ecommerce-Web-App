@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -7,12 +7,12 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from "cdbreact";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 
 const Sidebar = () => {
-  const [active, setActive] = useState(true);
+  const { userInfo } = useSelector((state) => state.user);
   return (
     <div
       style={{
@@ -25,31 +25,14 @@ const Sidebar = () => {
     >
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader
-          prefix={
-            <i
-              className="toggle-button fa fa-bars fa-large"
-              onClick={() => (active ? setActive(false) : setActive(true))}
-            ></i>
-          }
+          prefix={<i className="toggle-button fa fa-bars fa-large"></i>}
         >
-          <img src={logo} alt="" style={{ width: "50px" }} />
+          <NavLink to="/">
+            <img src={logo} alt="" style={{ width: "50px" }} />
+          </NavLink>
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
-          <Form className="d-flex sidebar-form">
-            <Form.Control
-              type="search"
-              placeholder={`${active ? "Search" : ""}`}
-              className="me-2 rounded"
-              aria-label="Search"
-            />
-            <Button
-              variant="outline-secondary"
-              className={active ? "" : "button-icon-position"}
-            >
-              <i className="fa-solid fa-magnifying-glass" />
-            </Button>
-          </Form>
           <CDBSidebarMenu>
             <NavLink to="/">
               <CDBSidebarMenuItem icon="home">Home</CDBSidebarMenuItem>
@@ -57,9 +40,21 @@ const Sidebar = () => {
             <NavLink to="/cart">
               <CDBSidebarMenuItem icon="shop">Cart</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="/profile">
-              <CDBSidebarMenuItem icon="user">Profile</CDBSidebarMenuItem>
-            </NavLink>
+            {userInfo ? (
+              <>
+                <NavLink to="/profile">
+                  <CDBSidebarMenuItem icon="user">Profile</CDBSidebarMenuItem>
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login">
+                  <CDBSidebarMenuItem icon="user">
+                    Login/Register
+                  </CDBSidebarMenuItem>
+                </NavLink>
+              </>
+            )}
             <NavLink to="/analytics">
               <CDBSidebarMenuItem icon="chart-line">
                 Analytics
@@ -80,19 +75,19 @@ const Sidebar = () => {
               padding: "20px 5px",
             }}
           >
-            <div
-              className={`cbs-footer ${active ? "" : "change-flex"}`}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "15px",
-                margin: "20px 0",
-              }}
-            >
-              <i className="fa-brands fa-facebook"></i>
-              <i className="fa-brands fa-instagram"></i>
-              <i className="fa-brands fa-twitter"></i>
-            </div>
+            <Container>
+              <Row>
+                <Col>
+                  <i className="fa-brands fa-facebook"></i>
+                </Col>
+                <Col>
+                  <i className="fa-brands fa-instagram"></i>
+                </Col>
+                <Col>
+                  <i className="fa-brands fa-twitter"></i>
+                </Col>
+              </Row>
+            </Container>
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>

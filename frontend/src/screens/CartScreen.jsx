@@ -128,6 +128,7 @@ const CartScreen = () => {
                         acc + Number(item.qty) * Number(item.price).toFixed(1),
                       0
                     )}
+                    $
                   </p>
                 </Col>
               </Row>
