@@ -128,3 +128,40 @@ form div {
 .margin-auto {
   margin: 0 auto;
 }
+.header {
+  color: var(--bs-white);
+  background-color: rgb(51, 51, 51);
+  padding: 1.2rem 0;
+}
+
+.link-color-white {
+  color: var(--bs-white);
+}
+.subtext {
+  color: #919aa1;
+}
+.img-responsive {
+  width: 100%;
+}
+.home-product-card {
+  position: relative;
+  text-align: center;
+}
+.home-product-card-text {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  color: #000;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home-product-card-text h1 {
+  letter-spacing: 7.8px;
+  font-size: 3vw;
+  font-weight: bold;
+  margin: 8px !important;
+}
