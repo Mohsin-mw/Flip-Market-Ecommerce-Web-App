@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import whiteLogo from "../assets/logo.svg";
 import { GetUserDetials } from "../store/Slices/UserDetails/UserDetailsFunctions";
 import { UserDetialsUpdate } from "../store/Slices/UserUpdate/UserUpdateFunction";
+import { MdTipsAndUpdates } from "react-icons/md";
 const ProfileScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,7 +24,6 @@ const ProfileScreen = () => {
       if (!user || !user.name) {
         GetUserDetials(dispatch, "profile", userInfo.token);
       } else {
-        console.log(user.name);
         setName(userInfo.name);
         setEmail(userInfo.email);
       }
@@ -58,6 +58,12 @@ const ProfileScreen = () => {
           <div className="d-flex justify-content-center align-items-center flex-column">
             {message && <Alert>{message}</Alert>}
             {error && <Alert>{error}</Alert>}
+            <div className="d-flex justify-content-center align-items-center">
+              <h2 className="font-weight-bold" style={{ margin: "0" }}>
+                Update Your Profile
+              </h2>
+              <MdTipsAndUpdates size={30} />
+            </div>
             <Form
               className="login-form d-flex justify-content-center align-items-start flex-column"
               onSubmit={submitHandler}

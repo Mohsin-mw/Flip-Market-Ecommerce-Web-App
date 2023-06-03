@@ -18,12 +18,15 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/Slices/Cart/CartFunctions";
+import Loader from "../components/loader";
+
 import {
   addCartItemToLocalStorage,
   removeCartItem,
 } from "../store/Slices/Cart/CartSlice";
 
 const CartScreen = () => {
+  const app = useSelector((state) => state.app);
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const { cartItems } = useSelector((state) => state.cart);

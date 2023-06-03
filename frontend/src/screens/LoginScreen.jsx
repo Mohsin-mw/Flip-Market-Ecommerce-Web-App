@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { UserLogin } from "../store/Slices/User/UserFunction";
 import FormContainer from "../components/FormContainer";
 import whiteLogo from "../assets/logo.svg";
+import { AiOutlineLogin } from "react-icons/ai";
 
 const LoginScreen = () => {
   const [searchParams] = useSearchParams();
@@ -34,6 +35,12 @@ const LoginScreen = () => {
         </Col>
         <Col md>
           <div className="d-flex justify-content-center align-items-center flex-column ">
+            <div className="d-flex justify-content-center align-items-center">
+              <h2 className="font-weight-bold" style={{ margin: "0" }}>
+                Login
+              </h2>
+              <AiOutlineLogin size={30} />
+            </div>
             {error && <Alert variant="error">{error}</Alert>}
             <Form
               className="login-form d-flex justify-content-center align-items-start flex-column"

@@ -5,7 +5,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { UserRegister } from "../store/Slices/UserRegister/UserRegisterFunction";
 import whiteLogo from "../assets/logo.svg";
-import FormContainer from "../components/FormContainer";
+import { MdSupervisorAccount } from "react-icons/md";
 
 const RegisterScreen = () => {
   const [searchParams] = useSearchParams();
@@ -47,6 +47,12 @@ const RegisterScreen = () => {
         </Col>
         <Col md>
           <div className="d-flex justify-content-center align-items-center flex-column">
+            <div className="d-flex justify-content-center align-items-center">
+              <h2 className="font-weight-bold" style={{ margin: "0" }}>
+                Register
+              </h2>
+              <MdSupervisorAccount size={30} />
+            </div>
             {message && <Alert>{message}</Alert>}
             {error && <Alert>{error}</Alert>}
             <Form
