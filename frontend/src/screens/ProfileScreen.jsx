@@ -3,16 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import whiteLogo from "../assets/logo.svg";
-import { UserDetialsUpdate } from "../store/Slices/UserUpdate/UserUpdateFunctions";
+import { GetUserDetials } from "../store/Slices/UserDetails/UserDetailsFunctions";
+import { UserDetialsUpdate } from "../store/Slices/UserUpdate/UserUpdateFunction";
 const ProfileScreen = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-  const userDetails = useSelector((state) => state.userUpdate);
+  const userDetails = useSelector((state) => state.userDetails);
   const { user, error } = userDetails;
   const { userInfo } = useSelector((state) => state.user);
   useEffect(() => {
@@ -20,18 +21,25 @@ const ProfileScreen = () => {
       navigate("/login");
     } else {
       if (!user || !user.name) {
-        UserDetialsUpdate(dispatch, "profile", userInfo.token);
+        GetUserDetials(dispatch, "profile", userInfo.token);
       } else {
-        setName(user.name);
-        setEmail(user.email);
+        console.log(user.name);
+        setName(userInfo.name);
+        setEmail(userInfo.email);
       }
     }
-  }, [dispatch]);
+  }, [dispatch, userInfo, user]);
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password != confirmPassword) {
       setMessage("Password does not match!");
     } else {
+      UserDetialsUpdate(dispatch, userInfo.token, {
+        id: userInfo.id,
+        name: name,
+        email: email,
+        password: password,
+      });
     }
   };
 

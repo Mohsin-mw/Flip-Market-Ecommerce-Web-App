@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, NavDropdown, Container } from "react-bootstrap";
 import { userLogout } from "../store/Slices/User/UserSlice";
+import { resetCartItems } from "../store/Slices/Cart/CartSlice";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
 import { userRegisterRemove } from "../store/Slices/UserRegister/UserRegister";
@@ -15,6 +16,7 @@ const Header = () => {
     dispatch(toggleLoading(true));
     dispatch(userLogout());
     dispatch(userRegisterRemove());
+    dispatch(resetCartItems());
     setTimeout(() => dispatch(toggleLoading(false)), 2000);
   };
   return (

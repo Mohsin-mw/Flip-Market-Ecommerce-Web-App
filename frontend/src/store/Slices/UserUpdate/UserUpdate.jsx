@@ -2,20 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userUpdateSlice = createSlice({
   name: "UserUpdate",
-  initialState: { user: {} },
+  initialState: {},
   reducers: {
-    userUpdateRequest: (state, action) => {
-      return { ...state };
+    userProfileUpdateRequest: (state, action) => {
+      return {};
     },
-    userUpdateSuccess: (state, action) => {
-      return { user: action.payload };
+    userProfileUpdateSuccess: (state, action) => {
+      return { success: true, userInfo: action.payload };
     },
-    userUpdateFail: (state, action) => {
+    userProfileUpdateFail: (state, action) => {
       return { error: action.payload };
+    },
+    userProfileUpdateReset: (state, action) => {
+      return {};
     },
   },
 });
 
-export const { userUpdateRequest, userUpdateSuccess, userUpdateFail } =
-  userUpdateSlice.actions;
+export const {
+  userProfileUpdateRequest,
+  userProfileUpdateSuccess,
+  userProfileUpdateFail,
+  userProfileUpdateReset,
+} = userUpdateSlice.actions;
 export default userUpdateSlice.reducer;

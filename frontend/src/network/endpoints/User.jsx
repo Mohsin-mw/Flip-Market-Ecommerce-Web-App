@@ -15,6 +15,10 @@ export function RegisterUser(name, email, password) {
   });
 }
 
-export function UpdateUser(token, id) {
+export function GetUserDetails(token, id) {
   return axiosClientWithToken(token).get(`/users/${id}`);
+}
+
+export function UpdateUserDetails(token, user) {
+  return axiosClientWithToken(token).put(`/users/profile/update/`, user);
 }
