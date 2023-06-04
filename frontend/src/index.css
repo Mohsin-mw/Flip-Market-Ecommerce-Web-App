@@ -126,7 +126,7 @@ form div {
   margin: 2.3rem 0 !important;
 }
 .margin-auto {
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 .header {
   color: var(--bs-white);
@@ -157,7 +157,33 @@ form div {
   font-size: 3vw;
   font-weight: bold;
   margin: 8px !important;
+  font-family: "Pacifico", cursive;
 }
 .remove-padding {
   padding: 0 !important;
+}
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(51, 51, 51) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(51, 51, 51);
+  border-radius: 500px;
+  border: 3px solid #ffffff;
+}
+.footer-developer {
+  display: block;
+  font-family: "Pacifico", cursive;
 }

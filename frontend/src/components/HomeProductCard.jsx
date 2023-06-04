@@ -17,10 +17,10 @@ const HomeProductCard = (props) => {
         >
           <div>
             <h3>{props.heading}</h3>
-            <h1>{props.off}% OFF</h1>
+            <h1>{props.off}% Off</h1>
             <h3>From {props.startingPrice}$</h3>
             {props.subtext ? (
-              <div className="">
+              <div>
                 <Button>{props.subtext}</Button>
               </div>
             ) : (
@@ -29,7 +29,7 @@ const HomeProductCard = (props) => {
           </div>
         </Col>
         <Col md className="d-flex justify-content-center align-items-center">
-          <img src={props.image} alt="" />
+          <Image fluid src={props.image} alt="" />
         </Col>
       </Row>
     </div>

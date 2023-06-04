@@ -11,48 +11,45 @@ const Footer = () => {
           <Col className="text-center py-3" md>
             <img src={logoWhite} width="100px" alt="" />
             <p className="mt-3" style={{ fontSize: "1vw" }}>
-              We are creating High Quality Resources and tools to Aid developers
-              during the developement of their projects
+              Developed by
+              <span className="footer-developer">Mohsin</span>
             </p>
+            <p>© Flip Market - All Rights Reserved</p>
           </Col>
           <Col className="text-center py-3 " md>
-            <h6>Devwares</h6>
+            <h6>Social Links</h6>
             <p className="mt-5">
-              <Link>Resources</Link>
+              <a href="https://www.facebook.com" target="_blank">
+                Facebook
+              </a>
             </p>
             <p>
-              <Link>About</Link>
+              <a href="https://www.instagram.com" target="_blank">
+                Instagram
+              </a>
             </p>
             <p>
-              <Link>Contact</Link>
-            </p>
-            <p>
-              <Link>Blog</Link>
+              <a href="https://www.twitter.com" target="_blank">
+                Twitter
+              </a>
             </p>
           </Col>
           <Col className="text-center py-3" md>
             <h6>Help</h6>
             <p className="mt-5">
-              <Link>Support</Link>
+              <Link to="/profile">Profile</Link>
             </p>
             <p>
-              <Link>Sign Up</Link>
+              <Link to="/register">Sign Up</Link>
             </p>
             <p>
-              <Link>Sign In</Link>
+              <Link to="/login">Sign In</Link>
             </p>
           </Col>
           <Col className="text-center py-3" md>
-            <h6>Products</h6>
-            <p className="mt-5">
-              <Link>Winframe</Link>
-            </p>
-            <p>
-              <Link>Loop</Link>
-            </p>
-            <p>
-              <Link>Contrast</Link>
-            </p>
+            <h6>Contanct Info</h6>
+            <p className="mt-5">(800) 8001-8588</p>
+            <p>17 Princess Road, London, Greater London NW1 8JR, UK</p>
           </Col>
         </Row>
       </Container>
