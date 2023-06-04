@@ -72,35 +72,39 @@ const HomeScreen = () => {
           </Row>
           <Container fluid>
             <Row>
-              <Col>
+              <Col className="h-100">
                 <HomeProductCard
-                  image="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/01/shop1_home_slider3.jpg"
-                  heading="New Arrivals"
-                  subtext="Get Yours"
+                  image="https://cdn.shopify.com/s/files/1/0265/3493/6627/files/image-slide-1.png?v=1649835414&width=520"
+                  heading="The New Standerd"
+                  subtext="Start Buying"
+                  off="30"
+                  startingPrice="99"
                 />
               </Col>
             </Row>
             <Row>
-              <Col sm>
-                <HomeProductCard
-                  image="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/01/shop1_home_ads1.jpg"
-                  subtext="Watches"
+              <Col sm className="remove-padding">
+                <Image
+                  fluid
+                  src="https://cdn.shopify.com/s/files/1/0265/3493/6627/files/tab-1-h4-1.jpg?v=1650007949"
+                  className="img-responsive"
                 />
               </Col>
-              <Col sm>
-                <HomeProductCard
-                  image="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/01/shop1_home_ads2.jpg"
-                  subtext="Promos"
+              <Col sm className="remove-padding">
+                <Image
+                  fluid
+                  src="https://cdn.shopify.com/s/files/1/0265/3493/6627/files/tab-1-h4-2.jpg?v=1650008256"
+                  className="img-responsive"
                 />
               </Col>
-              <Col sm>
-                <HomeProductCard
-                  image="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/01/shop1_home_ads3.jpg"
-                  subtext="HandBags"
+              <Col sm className="remove-padding">
+                <Image
+                  fluid
+                  src="https://cdn.shopify.com/s/files/1/0265/3493/6627/files/product-tab-h7-1.jpg?v=1650256014"
+                  className="img-responsive"
                 />
               </Col>
             </Row>
-            {/* SAVE IMAGE IN LOCAL STORAGE !!! */}
           </Container>
           <h3 className="mt-5 mb-4">Featured Products</h3>
           <Row className="mt-4 mb-4">

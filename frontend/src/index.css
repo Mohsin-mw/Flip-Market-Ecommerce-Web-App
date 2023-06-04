@@ -142,26 +142,22 @@ form div {
 }
 .img-responsive {
   width: 100%;
+  object-fit: cover;
 }
 .home-product-card {
-  position: relative;
   text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-.home-product-card-text {
-  position: absolute;
-  top: 25%;
-  left: 10%;
-  color: #000;
-}
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.home-product-card-text h1 {
+
+.home-product-card div h1 {
   letter-spacing: 7.8px;
   font-size: 3vw;
   font-weight: bold;
   margin: 8px !important;
+}
+.remove-padding {
+  padding: 0 !important;
 }
