@@ -202,9 +202,9 @@ const HomeScreen = () => {
               <Image src="https://i.ibb.co/5GnY476/coin-Build.png" fluid />
             </Col>
           </Row>
-          <section class="bg-dark text-center p-5 mt-4">
-            <div class="container p-3">
-              <h3 class="text-white">SUBSCRIBE NOW</h3>
+          <section className="bg-dark text-center p-5 mt-4">
+            <div className="container p-3">
+              <h3 className="text-white">SUBSCRIBE NOW</h3>
               <form action="#" method="Post">
                 <Row>
                   <Col md className="margin-auto my-3 ">
@@ -213,7 +213,7 @@ const HomeScreen = () => {
                       variant="outline-secondary"
                       className="py-2"
                     >
-                      Subscribe<i class="mx-3 fa fa-envelope"></i>
+                      Subscribe<i className="mx-3 fa fa-envelope"></i>
                     </Button>
                   </Col>
                 </Row>

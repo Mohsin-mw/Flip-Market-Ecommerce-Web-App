@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import Rating from "./Rating";
+import { useSelector } from "react-redux";
 
 const Product = ({ product }) => {
+  const { serverUrl } = useSelector((state) => state.app);
+
   return (
     <Card className=" my-3 p-3 rounded shadow-sm">
       <Link to={`product/${product._id}`}>
-        <Card.Img className="rounded" src={product.image} alt="" />
+        <Card.Img className="rounded" src={serverUrl + product.image} alt="" />
       </Link>
       <Card.Body as="div">
         <Card.Title as="div" className="">
