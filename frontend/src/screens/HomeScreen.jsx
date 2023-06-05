@@ -141,7 +141,7 @@ const HomeScreen = () => {
             <Col sm className="d-flex justify-content-center">
               <Button
                 variant="outline-primary"
-                className="my-3"
+                className="my-3 category-button"
                 onClick={AllProductsHandler}
               >
                 All
@@ -150,7 +150,7 @@ const HomeScreen = () => {
             <Col sm className="d-flex justify-content-center">
               <Button
                 variant="outline-primary"
-                className="my-3"
+                className="my-3 category-button"
                 onClick={PhonesHandler}
               >
                 Phones
@@ -159,7 +159,7 @@ const HomeScreen = () => {
             <Col sm className="d-flex justify-content-center">
               <Button
                 variant="outline-primary"
-                className="my-3"
+                className="my-3 category-button"
                 onClick={LaptopsHandler}
               >
                 Laptops
@@ -168,7 +168,7 @@ const HomeScreen = () => {
             <Col sm className="d-flex justify-content-center">
               <Button
                 variant="outline-primary"
-                className="my-3"
+                className="my-3 category-button"
                 onClick={ElectronicsHandler}
               >
                 Electronics

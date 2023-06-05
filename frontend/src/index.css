@@ -187,3 +187,7 @@ form div {
   display: block;
   font-family: "Pacifico", cursive;
 }
+.category-button {
+  outline: none !important;
+  border: none !important;
+}
