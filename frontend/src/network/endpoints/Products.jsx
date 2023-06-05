@@ -8,14 +8,10 @@ export function getProduct(id) {
   return axiosClient().get(`/products/${id}`, { timeout: 3000 });
 }
 
-export function getProductsElectronics() {
-  return axiosClient().get("/products/electronics", { timeout: 3000 });
+export function getProductByCategory(category) {
+  return axiosClient().get(`/products/category/${category}`, { timeout: 3000 });
 }
 
-export function getProductsPhones() {
-  return axiosClient().get("/products/phones", { timeout: 3000 });
-}
-
-export function getProductsLaptops() {
-  return axiosClient().get("/products/laptops", { timeout: 3000 });
+export function getAllCategoriesList() {
+  return axiosClient().get("/products/allcategories");
 }

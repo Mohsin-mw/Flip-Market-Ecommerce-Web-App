@@ -18,6 +18,7 @@ import Toastify from "../components/Toastify";
 import ErrorImage from "../assets/ErrorBadRequest.svg";
 
 const ProductScreen = () => {
+  const { serverUrl } = useSelector((state) => state.app);
   const { id } = useParams();
   const [qty, setqty] = useState(1);
   const productDetails = useSelector((state) => state.singleProduct);
@@ -58,7 +59,12 @@ const ProductScreen = () => {
       ) : (
         <Row>
           <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid rounded />
+            <Image
+              src={serverUrl + product.image}
+              alt={product.name}
+              fluid
+              rounded
+            />
           </Col>
           <Col md={3}>
             <ListGroup variant="flush">

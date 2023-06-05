@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col, Container, Image, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
@@ -10,43 +10,28 @@ import ErrorImage from "../assets/ErrorBadRequest.svg";
 import { AiFillCar } from "react-icons/ai";
 import { RiMoneyDollarCircleLine, Ri24HoursFill } from "react-icons/ri";
 import HomeProductCard from "../components/HomeProductCard";
+import { getAllCategoriesList } from "../network/endpoints/Products";
+import { FaCartArrowDown } from "react-icons/fa";
+
 const HomeScreen = () => {
+  const [allCategories, setAllCategories] = useState([]);
   const { products, error } = useSelector((state) => state.productList);
   const app = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
   const Load = async () => {
-    await listProducts(dispatch, "all");
+    await getAllCategoriesList().then((response) =>
+      setAllCategories(response.data)
+    );
+    await listProducts(dispatch, "All");
     setTimeout(() => {
       dispatch(toggleLoading(false));
     }, 500);
   };
-  const AllProductsHandler = async () => {
-    dispatch(toggleLoading(true));
-    await listProducts(dispatch, "all");
-    setTimeout(() => {
-      dispatch(toggleLoading(false));
-    }, 3000);
-  };
-  const ElectronicsHandler = async () => {
-    dispatch(toggleLoading(true));
-    await listProducts(dispatch, "electronics");
-    setTimeout(() => {
-      dispatch(toggleLoading(false));
-    }, 3000);
-  };
 
-  const LaptopsHandler = async () => {
+  const getCategory = async (category) => {
     dispatch(toggleLoading(true));
-    await listProducts(dispatch, "laptops");
-    setTimeout(() => {
-      dispatch(toggleLoading(false));
-    }, 3000);
-  };
-
-  const PhonesHandler = async () => {
-    dispatch(toggleLoading(true));
-    await listProducts(dispatch, "phones");
+    await listProducts(dispatch, category);
     setTimeout(() => {
       dispatch(toggleLoading(false));
     }, 3000);
@@ -54,6 +39,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(toggleLoading(true));
+
     Load();
   }, []);
 
@@ -136,44 +122,32 @@ const HomeScreen = () => {
               </Col>
             </Row>
           </Container>
-          <h3 className="mt-5 mb-4">Featured Products</h3>
+          <h3 className="mt-5 mb-4">
+            Featured Products <FaCartArrowDown />
+          </h3>
           <Row>
             <Col sm className="d-flex justify-content-center">
               <Button
                 variant="outline-primary"
                 className="my-3 category-button"
-                onClick={AllProductsHandler}
+                value="All"
+                onClick={(e) => getCategory(e.target.value)}
               >
                 All
               </Button>
             </Col>
-            <Col sm className="d-flex justify-content-center">
-              <Button
-                variant="outline-primary"
-                className="my-3 category-button"
-                onClick={PhonesHandler}
-              >
-                Phones
-              </Button>
-            </Col>
-            <Col sm className="d-flex justify-content-center">
-              <Button
-                variant="outline-primary"
-                className="my-3 category-button"
-                onClick={LaptopsHandler}
-              >
-                Laptops
-              </Button>
-            </Col>
-            <Col sm className="d-flex justify-content-center">
-              <Button
-                variant="outline-primary"
-                className="my-3 category-button"
-                onClick={ElectronicsHandler}
-              >
-                Electronics
-              </Button>
-            </Col>
+            {allCategories.map((element) => (
+              <Col sm className="d-flex justify-content-center" key={element}>
+                <Button
+                  variant="outline-primary"
+                  className="my-3 category-button"
+                  value={element}
+                  onClick={(e) => getCategory(e.target.value)}
+                >
+                  {element}
+                </Button>
+              </Col>
+            ))}
           </Row>
           <Row className="mt-4 mb-4">
             {products.map((product) => (

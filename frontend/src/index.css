@@ -137,6 +137,9 @@ form div {
 .link-color-white {
   color: var(--bs-white);
 }
+.link-color-white:hover {
+  color: var(--bs-white);
+}
 .subtext {
   color: #919aa1;
 }

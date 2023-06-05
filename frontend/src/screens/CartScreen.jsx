@@ -26,6 +26,7 @@ import {
 } from "../store/Slices/Cart/CartSlice";
 
 const CartScreen = () => {
+  const { serverUrl } = useSelector((state) => state.app);
   const app = useSelector((state) => state.app);
   const { id } = useParams();
   const [searchParams] = useSearchParams();
@@ -64,7 +65,12 @@ const CartScreen = () => {
               <ListGroupItem key={item.product}>
                 <Row>
                   <Col md={2}>
-                    <Image src={item.image} alt={item.name} fluid rounded />
+                    <Image
+                      src={serverUrl + item.image}
+                      alt={item.name}
+                      fluid
+                      rounded
+                    />
                   </Col>
                   <Col md={3} className="d-flex align-items-center ">
                     <Link to={`/product/${item.product}`}>{item.name}</Link>

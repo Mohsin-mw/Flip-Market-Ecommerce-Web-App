@@ -1,3 +1,4 @@
+import django_filters
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -45,3 +46,8 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = "__all__"
+
+class CategoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ["category"]

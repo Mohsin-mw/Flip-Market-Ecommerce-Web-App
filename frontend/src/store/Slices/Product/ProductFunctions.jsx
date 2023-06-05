@@ -1,8 +1,6 @@
 import {
   getProducts,
-  getProductsElectronics,
-  getProductsPhones,
-  getProductsLaptops,
+  getProductByCategory,
 } from "../../../network/endpoints/Products";
 import {
   productListRequest,
@@ -13,7 +11,7 @@ import {
 const listProducts = async (dispatch, category) => {
   try {
     dispatch(productListRequest());
-    if (category == "all") {
+    if (category == "All") {
       await getProducts()
         .then((response) => {
           dispatch(productListSucccess(response.data));
@@ -21,24 +19,8 @@ const listProducts = async (dispatch, category) => {
         .catch((error) => {
           dispatch(requestProductFail("Request timed out"));
         });
-    } else if (category == "electronics") {
-      await getProductsElectronics()
-        .then((response) => {
-          dispatch(productListSucccess(response.data));
-        })
-        .catch((error) => {
-          dispatch(requestProductFail("Request timed out"));
-        });
-    } else if (category == "phones") {
-      await getProductsPhones()
-        .then((response) => {
-          dispatch(productListSucccess(response.data));
-        })
-        .catch((error) => {
-          dispatch(requestProductFail("Request timed out"));
-        });
-    } else if (category == "laptops") {
-      await getProductsLaptops()
+    } else {
+      await getProductByCategory(category)
         .then((response) => {
           dispatch(productListSucccess(response.data));
         })
