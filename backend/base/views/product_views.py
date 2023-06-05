@@ -19,6 +19,34 @@ def getProducts(request):
 
 
 @api_view(['GET'])
+def getProductsElectronics(request):
+    query = request.query_params
+    products = Product.objects.filter(category="Electronics")
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getProductsPhones(request):
+    query = request.query_params
+    products = Product.objects.filter(category="Smartphones")
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getProductsLaptops(request):
+    query = request.query_params
+    products = Product.objects.filter(category="Laptops")
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+@api_view(['GET'])
+def getProductsElectronics(request):
+    query = request.query_params
+    products = Product.objects.filter(category="Electronics")
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
 def getProduct(request, pk):
     product = Product.objects.get(_id=pk)
     serializer = ProductSerializer(product, many=False)
