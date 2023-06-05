@@ -64,45 +64,6 @@ const Header = () => {
           </Col>
         </Row>
       </Container>
-      {/* <Navbar bg="dark" variant="dark" expand="lg">
-        <Container>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <div className="d-flex justify-content-center align-items-center text-center ">
-              <BsInfoCircle color="white" className="mx-2" />
-              Get Up to 40% OFF New-Season Style
-            </div>
-          </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-center align-items-center mx-auto">
-            {userInfo ? (
-              <>
-                <NavDropdown
-                  title={<BsPersonCircle />}
-                  id="navbarScrollingDropdown"
-                >
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </>
-            ) : (
-              <></>
-            )}
-          </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text className="d-flex justify-content-center align-items-center text-center">
-              {userInfo ? (
-                <Link to="/profile">Signed in as: {userInfo.name}</Link>
-              ) : (
-                <Link to="/login">Login/Register</Link>
-              )}
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
     </header>
   );
 };

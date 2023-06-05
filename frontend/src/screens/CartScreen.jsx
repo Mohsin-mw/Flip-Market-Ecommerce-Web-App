@@ -15,11 +15,10 @@ import {
   useParams,
   useSearchParams,
   useNavigate,
+  redirect,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/Slices/Cart/CartFunctions";
-import Loader from "../components/loader";
-
 import {
   addCartItemToLocalStorage,
   removeCartItem,
@@ -27,7 +26,7 @@ import {
 
 const CartScreen = () => {
   const { serverUrl } = useSelector((state) => state.app);
-  const app = useSelector((state) => state.app);
+  const user = useSelector((state) => state.user);
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const { cartItems } = useSelector((state) => state.cart);
@@ -47,7 +46,11 @@ const CartScreen = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+    if (user.userInfo != null) {
+      navigate("/shipping");
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <Row className="page-screen">
