@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { addShippingAddress } from "../store/Slices/Cart/CartSlice";
 import whiteLogo from "../assets/logo.svg";
 import { MdSupervisorAccount } from "react-icons/md";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 const ShippingScreen = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
@@ -18,10 +19,11 @@ const ShippingScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(addShippingAddress({ address, city, postalCode, country }));
-    navigate("/");
+    navigate("/payment");
   };
   return (
     <div className="page-screen row d-flex justify-content-center align-items-center h-100">
+      <CheckoutSteps step1 step2 />
       <Row className="shadow-lg p-3">
         <Col
           md
