@@ -6,10 +6,17 @@ const loadCartItems = () => {
   return cartItemsFromStorage;
 };
 
+const loadShippingAddress = () => {
+  const data = localStorage.getItem("shippingAddress");
+  const shippingAddressFromStorage = data ? JSON.parse(data) : {};
+  return shippingAddressFromStorage;
+};
+
 const CartSlice = createSlice({
   name: "Cart",
   initialState: {
     cartItems: loadCartItems(),
+    shippingAddress: loadShippingAddress(),
   },
   reducers: {
     addCartItem: (state, action) => {
@@ -50,6 +57,20 @@ const CartSlice = createSlice({
     resetCartItems: (state, action) => {
       return { cartItems: [] };
     },
+    addShippingAddress: (state, action) => {
+      localStorage.setItem("shippingAddress", JSON.stringify(action.payload));
+      return {
+        ...state,
+        shippingAddress: action.payload,
+      };
+    },
+    resetShippingAddress: (state, action) => {
+      localStorage.removeItem("shippingAddress");
+      return {
+        ...state,
+        shippingAddress: {},
+      };
+    },
   },
 });
 
@@ -58,5 +79,7 @@ export const {
   addCartItemToLocalStorage,
   removeCartItem,
   resetCartItems,
+  addShippingAddress,
+  resetShippingAddress,
 } = CartSlice.actions;
 export default CartSlice.reducer;

@@ -1,20 +1,24 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addShippingAddress } from "../store/Slices/Cart/CartSlice";
 import whiteLogo from "../assets/logo.svg";
 import { MdSupervisorAccount } from "react-icons/md";
 
 const ShippingScreen = () => {
-  const [address, setAddress] = useState();
-  const [city, setCity] = useState();
-  const [postalCode, setPostalCode] = useState();
-  const [country, setCountry] = useState();
+  const { shippingAddress } = useSelector((state) => state.cart);
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [country, setCountry] = useState(shippingAddress.country);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("Working");
+    dispatch(addShippingAddress({ address, city, postalCode, country }));
+    navigate("/");
   };
   return (
     <div className="page-screen row d-flex justify-content-center align-items-center h-100">
