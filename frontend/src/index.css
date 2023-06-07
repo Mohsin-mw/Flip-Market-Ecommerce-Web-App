@@ -194,3 +194,21 @@ form div {
   outline: none !important;
   border: none !important;
 }
+.nav-item {
+  margin-right: 0 !important;
+  text-align: center;
+  margin: 8px 0;
+}
+.nav-item a {
+  padding: 0 !important;
+  text-align: center;
+}
+.checkout-step-number span {
+  text-align: center;
+  background-color: #c9c9c9;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  border-radius: 100%;
+}
