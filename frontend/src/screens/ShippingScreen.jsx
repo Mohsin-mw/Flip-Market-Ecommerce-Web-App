@@ -39,7 +39,7 @@ const ShippingScreen = () => {
         <Col md>
           <div className="d-flex justify-content-center align-items-center flex-column">
             <div className="d-flex justify-content-center align-items-center">
-              <h2 className="my-3 font-weight-bold">Place Order</h2>
+              <h2 className="my-3 font-weight-bold">Details</h2>
               <MdSupervisorAccount size={30} />
             </div>
             <Form onSubmit={submitHandler}>

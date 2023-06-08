@@ -202,6 +202,7 @@ form div {
 .nav-item a {
   padding: 0 !important;
   text-align: center;
+  white-space: nowrap;
 }
 .checkout-step-number span {
   text-align: center;

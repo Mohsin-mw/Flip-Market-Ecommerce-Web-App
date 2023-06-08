@@ -21,7 +21,7 @@ const PaymentScreen = () => {
     e.preventDefault();
     console.log(payment);
     dispatch(savePaymentMethod(payment));
-    // navigate("/placeorder");
+    navigate("/placeorder");
   };
 
   return (
@@ -52,6 +52,7 @@ const PaymentScreen = () => {
                     <Form.Label as="legend">Select Method</Form.Label>
                     <Col>
                       <Form.Check
+                        required
                         type="radio"
                         label="Paypal or Credit Card"
                         id="paypal"
@@ -62,6 +63,7 @@ const PaymentScreen = () => {
                     </Col>
                     <Col>
                       <Form.Check
+                        required
                         type="radio"
                         label="Stripe"
                         id="stripe"
