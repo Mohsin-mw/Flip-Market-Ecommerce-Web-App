@@ -73,6 +73,44 @@ const OrderScreen = () => {
           </Card>
         </Col>
         <Col md className="my-3">
+          <Card className="px-3 py-5 my-3">
+            <h5>Order Items</h5>
+            {cartItems.map((item) => (
+              <ListGroupItem key={item.product} className="my-3">
+                <Row>
+                  <Col md={2}>
+                    <Image
+                      src={serverUrl + item.image}
+                      alt={item.name}
+                      fluid
+                      rounded
+                    />
+                  </Col>
+                  <Col md={3} className="d-flex align-items-center ">
+                    <Link to={`/product/${item.product}`}>{item.name}</Link>
+                  </Col>
+                  <Col md={2} className="d-flex align-items-center">
+                    ${item.price}
+                  </Col>
+                  <Col md={3} className="d-flex align-items-center">
+                    <Form.Control
+                      as="select"
+                      value={item.qty}
+                      onChange={(e) =>
+                        addToCart(dispatch, item.product, e.target.value)
+                      }
+                    >
+                      {[...Array(item.countInStock).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Col>
+                </Row>
+              </ListGroupItem>
+            ))}
+          </Card>
           <Card className="rounded">
             <ListGroup variant="flush">
               <ListGroupItem>
@@ -121,44 +159,6 @@ const OrderScreen = () => {
                 </Button>
               </ListGroupItem>
             </ListGroup>
-          </Card>
-          <Card className="px-3 py-5 my-3">
-            <h5>Order Items</h5>
-            {cartItems.map((item) => (
-              <ListGroupItem key={item.product} className="my-3">
-                <Row>
-                  <Col md={2}>
-                    <Image
-                      src={serverUrl + item.image}
-                      alt={item.name}
-                      fluid
-                      rounded
-                    />
-                  </Col>
-                  <Col md={3} className="d-flex align-items-center ">
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>
-                  </Col>
-                  <Col md={2} className="d-flex align-items-center">
-                    ${item.price}
-                  </Col>
-                  <Col md={3} className="d-flex align-items-center">
-                    <Form.Control
-                      as="select"
-                      value={item.qty}
-                      onChange={(e) =>
-                        addToCart(dispatch, item.product, e.target.value)
-                      }
-                    >
-                      {[...Array(item.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  </Col>
-                </Row>
-              </ListGroupItem>
-            ))}
           </Card>
         </Col>
       </Row>
