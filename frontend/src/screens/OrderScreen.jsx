@@ -7,22 +7,57 @@ import {
   ListGroupItem,
   Button,
   Image,
+  Alert,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CheckoutSteps from "../components/CheckoutSteps";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { CreateOrder } from "../store/Slices/Order/OrderFunction";
+import { useEffect } from "react";
 
 const OrderScreen = () => {
   const { userInfo } = useSelector((state) => state.user);
   const { shippingAddress } = useSelector((state) => state.cart);
   const { paymentMethod } = useSelector((state) => state.cart);
+  const { error, success } = useSelector((state) => state.order);
+  const cart = useSelector((state) => state.cart);
   const { cartItems } = useSelector((state) => state.cart);
   const { serverUrl } = useSelector((state) => state.app);
+  const navigate = useNavigate();
 
-  const checkoutHandler = () => {};
+  const itemsPrice = cartItems.reduce(
+    (acc, item) => acc + Number(item.qty) * Number(item.price).toFixed(1),
+    0
+  );
+  const shippingPrice = Number((itemsPrice > 100 ? 200 : 10).toFixed(2));
+  const taxPrice = Number(0.082 * itemsPrice).toFixed(2);
+  console.log(itemsPrice, shippingPrice, taxPrice);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!paymentMethod) {
+      // navigate("/payment");
+    }
+    if (success) {
+      navigate("/home");
+    }
+  });
+
+  const OrderHandler = () => {
+    CreateOrder(dispatch, userInfo.token, {
+      orderItems: cartItems,
+      shippingAddress: shippingAddress,
+      paymentMethod: paymentMethod,
+      itemPrice: itemsPrice,
+      shippingPrice: shippingPrice,
+      taxPrice: taxPrice,
+      totalPrice: itemsPrice,
+    });
+  };
   return (
     <div className="">
       <CheckoutSteps step1 step2 step3 step4 />
+      {error ? <Alert variant="danger">Order Faild</Alert> : ""}
       <Row>
         <Col md>
           <Card className="px-3 py-5 my-3">
@@ -72,7 +107,7 @@ const OrderScreen = () => {
             <Form.Control disabled type="text" placeholder={paymentMethod} />
           </Card>
         </Col>
-        <Col md className="my-3">
+        <Col md>
           <Card className="px-3 py-5 my-3">
             <h5>Order Items</h5>
             {cartItems.map((item) => (
@@ -111,7 +146,7 @@ const OrderScreen = () => {
               </ListGroupItem>
             ))}
           </Card>
-          <Card className="rounded">
+          <Card className="rounded my-3">
             <ListGroup variant="flush">
               <ListGroupItem>
                 <h4 className="my-5">
@@ -152,9 +187,9 @@ const OrderScreen = () => {
                   type="button"
                   className="btn-block rounded"
                   disabled={cartItems.length === 0}
-                  onClick={checkoutHandler}
+                  onClick={OrderHandler}
                 >
-                  Proceed To Checkout
+                  Place Order
                   <i className="mx-3 fa-solid fa-bag-shopping"></i>
                 </Button>
               </ListGroupItem>

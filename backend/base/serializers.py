@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Product, Order, OrderItem, ShippingAddress
 
-
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only=True)
     _id = serializers.SerializerMethodField(read_only=True)
@@ -64,29 +63,29 @@ class OrderItemSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
 class OrderSerializer(serializers.ModelSerializer):
-    orders = serializers.SerializerMethodField(read_only=True)
+    orderItems = serializers.SerializerMethodField(read_only=True)
     shippingAddress = serializers.SerializerMethodField(read_only=True)
     user = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
-        model = Order
-        fields = "__all__"
+        model = OrderItem
+        fields = '__all__'
 
-    def get_order(self, obj):
+    def get_orderItems(self, obj):
         items = obj.orderitem_set.all()
-        serializer = OrderSerializer(items, many=True)
-        return  serializer.data
+        serializer = OrderItemSerializer(items, many=True)
+        return serializer.data
 
     def get_shippingAddress(self, obj):
         try:
-            address = ShippingSerializer(obj.shippingAddress, many=False)
+            address = ShippingAddress(
+                obj.shippingaddress, many=False).data
         except:
             address = False
-        return  address
+        return address
 
     def get_user(self, obj):
         user = obj.user
         serializer = UserSerializer(user, many=False)
-        return  serializer.data
+        return serializer.data
