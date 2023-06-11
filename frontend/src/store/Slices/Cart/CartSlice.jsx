@@ -56,7 +56,9 @@ const CartSlice = createSlice({
       );
     },
     resetCartItems: (state, action) => {
-      return { cartItems: [] };
+      return {
+        cartItems: [],
+      };
     },
     addShippingAddress: (state, action) => {
       localStorage.setItem("shippingAddress", JSON.stringify(action.payload));

@@ -14,6 +14,10 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import { CreateOrder } from "../store/Slices/Order/OrderFunction";
 import { useEffect } from "react";
+import {
+  resetCartItems,
+  resetShippingAddress,
+} from "../store/Slices/Cart/CartSlice";
 
 const OrderScreen = () => {
   const { userInfo } = useSelector((state) => state.user);
@@ -39,7 +43,9 @@ const OrderScreen = () => {
       // navigate("/payment");
     }
     if (success) {
-      navigate("/home");
+      dispatch(resetCartItems());
+      dispatch(resetShippingAddress());
+      navigate("/");
     }
   });
 

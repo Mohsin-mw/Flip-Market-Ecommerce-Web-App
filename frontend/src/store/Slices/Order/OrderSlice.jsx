@@ -8,7 +8,7 @@ const orderSlice = createSlice({
       return {};
     },
     orderSuccess: (state, action) => {
-      return { order: action.payload };
+      return { success: true, order: action.payload };
     },
     orderFailed: (state, action) => {
       return { error: action.payload };

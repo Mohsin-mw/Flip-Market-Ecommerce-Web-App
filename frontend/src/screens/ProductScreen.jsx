@@ -125,12 +125,13 @@ const ProductScreen = () => {
                     </Row>
                   </ListGroup.Item>
                 )}
+                {console.log(product.countInStock)}
                 <ListGroup.Item className="my-4">
                   <Button
                     className="btn-block rounded"
                     type="button"
                     onClick={addCartHandler}
-                    disabled={product.countInStock == 0}
+                    disabled={product.countInStock <= 0}
                   >
                     Add to Cart
                     <i className="mx-3 fa-solid fa-cart-shopping"></i>
