@@ -42,8 +42,6 @@ const OrderScreen = () => {
       navigate("/payment");
     }
     if (success) {
-      // dispatch(resetCartItems());
-      // dispatch(resetShippingAddress());
       navigate(`/summary/id:${order._id}`);
     }
   });
@@ -116,7 +114,7 @@ const OrderScreen = () => {
           <Card className="px-3 py-5 my-3">
             <h5>Order Items</h5>
             {cartItems.map((item) => (
-              <ListGroupItem key={item.product} className="my-3">
+              <ListGroupItem key={item.name} className="my-3">
                 <Row>
                   <Col md={2}>
                     <Image

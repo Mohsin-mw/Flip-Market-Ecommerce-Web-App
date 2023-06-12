@@ -55,10 +55,8 @@ const Sidebar = () => {
                 </NavLink>
               </>
             )}
-            <NavLink to="/analytics">
-              <CDBSidebarMenuItem icon="chart-line">
-                Analytics
-              </CDBSidebarMenuItem>
+            <NavLink to="/orders">
+              <CDBSidebarMenuItem icon="chart-line">Orders</CDBSidebarMenuItem>
             </NavLink>
 
             <NavLink to="/hero404" target="_blank">

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, NavDropdown, Container, Row, Col } from "react-bootstrap";
 import { userLogout } from "../store/Slices/User/UserSlice";
+import { orderDetailsReset } from "../store/Slices/AllOrders/AllOrdersSlice";
 import {
   resetCartItems,
   resetShippingAddress,
@@ -21,6 +22,7 @@ const Header = () => {
     dispatch(userRegisterRemove());
     dispatch(resetCartItems());
     dispatch(resetShippingAddress());
+    dispatch(orderDetailsReset());
     setTimeout(() => dispatch(toggleLoading(false)), 2000);
   };
   return (

@@ -8,8 +8,7 @@ import UserRegisterReducer from "./Slices/UserRegister/UserRegister";
 import UserDetailsReducer from "./Slices/UserDetails/UserDetails";
 import UserUpdateReducer from "./Slices/UserUpdate/UserUpdate";
 import OrderReducer from "./Slices/Order/OrderSlice";
-import OrderDeatilsReducer from "./Slices/OrderDeatils/OrderDeatilsSlice";
-
+import OrderDetailsAllReducer from "./Slices/AllOrders/AllOrdersSlice";
 export const store = configureStore({
   reducer: {
     app: AppReducer,
@@ -21,6 +20,6 @@ export const store = configureStore({
     userDetails: UserDetailsReducer,
     userUpdate: UserUpdateReducer,
     order: OrderReducer,
-    orderDetails: OrderDeatilsReducer,
+    allOrders: OrderDetailsAllReducer,
   },
 });

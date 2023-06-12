@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Card, Form, Alert, Image } from "react-bootstrap";
+import { Row, Col, Card, Form, Alert, Image, Button } from "react-bootstrap";
 import Loader from "../components/loader";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { GetOrderDetails } from "../network/endpoints/Order";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
-import { orderRequest } from "../store/Slices/OrderDeatils/OrderDeatilsSlice";
+import {
+  resetCartItems,
+  resetShippingAddress,
+} from "../store/Slices/Cart/CartSlice";
 const OrderSummary = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const app = useSelector((state) => state.app);
   const [orderInfo, setOrderInfo] = useState();
   const [address, setAddress] = useState("");
@@ -21,7 +26,6 @@ const OrderSummary = () => {
   const [shippingPrice, setShippingPrice] = useState("");
   const [taxPrice, setTaxPrice] = useState("");
   const [orderItems, setOrderItems] = useState([]);
-  const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user);
   const token = userInfo.token;
   const { id } = useParams();
@@ -29,7 +33,6 @@ const OrderSummary = () => {
 
   const GetOrder = async () => {
     await GetOrderDetails(token, urlId).then((response) => {
-      dispatch(orderRequest(response.data.orderItems));
       setAddress(response.data.shippingAddress.address);
       setCity(response.data.shippingAddress.city);
       setPostalCode(response.data.shippingAddress.postalCode);
@@ -48,6 +51,12 @@ const OrderSummary = () => {
     }, 1000);
   };
 
+  const navigationHandler = () => {
+    dispatch(resetCartItems());
+    dispatch(resetShippingAddress());
+    navigate("/orders");
+  };
+
   useEffect(() => {
     dispatch(toggleLoading(true));
 
@@ -58,6 +67,9 @@ const OrderSummary = () => {
   return (
     <div className="page-screen my-5">
       <h2>Order Summary</h2>
+      <Button className="my-5" onClick={navigationHandler}>
+        View All Orders
+      </Button>
       {app.isLoading ? (
         <Loader />
       ) : (
