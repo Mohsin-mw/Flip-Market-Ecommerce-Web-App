@@ -23,7 +23,7 @@ const OrderScreen = () => {
   const { userInfo } = useSelector((state) => state.user);
   const { shippingAddress } = useSelector((state) => state.cart);
   const { paymentMethod } = useSelector((state) => state.cart);
-  const { error, success } = useSelector((state) => state.order);
+  const { error, success, order } = useSelector((state) => state.order);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = useSelector((state) => state.cart);
   const { serverUrl } = useSelector((state) => state.app);
@@ -35,17 +35,16 @@ const OrderScreen = () => {
   );
   const shippingPrice = Number((itemsPrice > 100 ? 200 : 10).toFixed(2));
   const taxPrice = Number(0.082 * itemsPrice).toFixed(2);
-  console.log(itemsPrice, shippingPrice, taxPrice);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!paymentMethod) {
-      // navigate("/payment");
+      navigate("/payment");
     }
     if (success) {
-      dispatch(resetCartItems());
-      dispatch(resetShippingAddress());
-      navigate("/");
+      // dispatch(resetCartItems());
+      // dispatch(resetShippingAddress());
+      navigate(`/summary/id:${order._id}`);
     }
   });
 
@@ -135,6 +134,7 @@ const OrderScreen = () => {
                   </Col>
                   <Col md={3} className="d-flex align-items-center">
                     <Form.Control
+                      disabled
                       as="select"
                       value={item.qty}
                       onChange={(e) =>

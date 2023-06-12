@@ -8,6 +8,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import ShippingScreen from "../screens/ShippingScreen";
 import PaymentScreen from "../screens/PaymentScreen";
 import OrderScreen from "../screens/OrderScreen";
+import OrderSummary from "../screens/OrderSummary";
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/shipping" element={<ShippingScreen />} />
       <Route path="/payment" element={<PaymentScreen />} />
       <Route path="/placeorder" element={<OrderScreen />} />
+      <Route path="/summary/:id" element={<OrderSummary />} />
     </Routes>
   );
 }

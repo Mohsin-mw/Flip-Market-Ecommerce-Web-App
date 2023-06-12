@@ -124,9 +124,7 @@ const CartScreen = () => {
                   <p className="sub-text">Items:</p>
                 </Col>
                 <Col>
-                  <p className="sub-text">
-                    {cartItems.reduce((acc, item) => acc + Number(item.qty), 0)}
-                  </p>
+                  <p className="sub-text">{cartItems.length}</p>
                 </Col>
               </Row>
               <Row>

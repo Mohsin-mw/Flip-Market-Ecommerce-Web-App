@@ -5,5 +5,5 @@ export function PlaceOrder(token, order) {
 }
 
 export function GetOrderDetails(token, id) {
-  return axiosClientWithToken(token).post(`/orders/${id}`);
+  return axiosClientWithToken(token).get(`/orders/${id}/`);
 }
