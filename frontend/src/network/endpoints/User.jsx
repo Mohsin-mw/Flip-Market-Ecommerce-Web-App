@@ -23,6 +23,6 @@ export function UpdateUserDetails(token, user) {
   return axiosClientWithToken(token).put(`/users/profile/update/`, user);
 }
 
-export default function GetAllOrders(token, user) {
-  return axiosClientWithToken(token).get("/orders/allorders/", user);
+export function GetAllUsers(token) {
+  return axiosClientWithToken(token).get("/users");
 }

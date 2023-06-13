@@ -4,6 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, NavDropdown, Container, Row, Col } from "react-bootstrap";
 import { userLogout } from "../store/Slices/User/UserSlice";
 import { orderDetailsReset } from "../store/Slices/AllOrders/AllOrdersSlice";
+import { allUsersReset } from "../store/Slices/AllUsers/AllUsersSlice";
 import {
   resetCartItems,
   resetShippingAddress,
@@ -23,6 +24,7 @@ const Header = () => {
     dispatch(resetCartItems());
     dispatch(resetShippingAddress());
     dispatch(orderDetailsReset());
+    dispatch(allUsersReset());
     setTimeout(() => dispatch(toggleLoading(false)), 2000);
   };
   return (
@@ -42,12 +44,25 @@ const Header = () => {
                   title={<BsPersonCircle />}
                   id="navbarScrollingDropdown"
                 >
-                  <LinkContainer to="/profile">
+                  <LinkContainer className="my-2" to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
+                  <NavDropdown.Item className="my-2" onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
+                  {userInfo && userInfo.isAdmin && (
+                    <>
+                      <LinkContainer className="my-2" to="/admin/allusers">
+                        <NavDropdown.Item>Users</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer className="my-2" to="/admin/allproducts">
+                        <NavDropdown.Item>Products</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer className="my-2" to="/admin/allorders">
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                      </LinkContainer>
+                    </>
+                  )}
                 </NavDropdown>
               </div>
             ) : (

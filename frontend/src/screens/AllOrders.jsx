@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { GetAllOrders } from "../network/endpoints/Order";
 import { orderDetailsAll } from "../store/Slices/AllOrders/AllOrdersSlice";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
@@ -12,6 +14,7 @@ const AllOrders = () => {
   const [allOrders, setAllOrders] = useState([]);
   const user = useSelector((state) => state.user);
   const app = useSelector((state) => state.app);
+  const navigate = useNavigate();
   const GetOrders = () => {
     dispatch(toggleLoading(true));
     GetAllOrders(user.userInfo.token, user.userInfo).then((response) => {
@@ -26,7 +29,11 @@ const AllOrders = () => {
     print();
   };
   useEffect(() => {
-    GetOrders();
+    if (user.userInfo == null) {
+      navigate("/");
+    } else {
+      GetOrders();
+    }
   }, []);
   return (
     <div className="page-screen my-1">
@@ -38,7 +45,7 @@ const AllOrders = () => {
         <>
           <Alert variant="info">
             <i className="mx-2 fa-solid fa-circle-info"></i>
-            No Order Yet <Link to="/">Go Back</Link>{" "}
+            No Orders Yet <Link to="/">Go Back</Link>{" "}
           </Alert>
           <div className="d-flex align-items-center justify-content-center my-5">
             <Image src={noDataImage} />
