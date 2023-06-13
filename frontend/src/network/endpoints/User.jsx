@@ -26,3 +26,7 @@ export function UpdateUserDetails(token, user) {
 export function GetAllUsers(token) {
   return axiosClientWithToken(token).get("/users");
 }
+
+export function DeleteUser(token, id) {
+  return axiosClientWithToken(token).delete(`/users/delete/${id}/`);
+}

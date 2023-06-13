@@ -1,18 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GetAllUsers } from "../network/endpoints/User";
+import { GetAllUsers, DeleteUser } from "../network/endpoints/User";
 import {
   allUsersRequest,
   allUsersRequestFailed,
 } from "../store/Slices/AllUsers/AllUsersSlice";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
 import Loader from "../components/loader";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Alert } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { all } from "axios";
 const UserListScreen = () => {
   const app = useSelector((state) => state.app);
+  const [userDeleteMessage, setUserDeleteMessage] = useState("");
   const { userInfo } = useSelector((state) => state.user);
   const { users } = useSelector((state) => state.allUsers);
   const dispatch = useDispatch();
@@ -29,8 +29,9 @@ const UserListScreen = () => {
     }, 3000);
   };
 
-  const deleteHandler = (id) => {
-    console.log(id);
+  const deleteHandler = (user) => {
+    setUserDeleteMessage(`${user.name} was Deleted Successfully`);
+    DeleteUser(userInfo.token, user._id);
   };
 
   useEffect(() => {
@@ -39,14 +40,19 @@ const UserListScreen = () => {
     } else {
       GetUsers();
     }
-  }, []);
+  }, [dispatch, userDeleteMessage]);
 
   return (
-    <div className="page-screen">
+    <div className="page-screen my-5">
+      {userDeleteMessage == "" ? (
+        ""
+      ) : (
+        <Alert variant="success">{userDeleteMessage}</Alert>
+      )}
       {app.isLoading ? (
         <Loader />
       ) : (
-        <Table striped bordered hover responsive className="table-sm">
+        <Table striped bordered hover responsive className="table-sm my-5">
           <thead>
             <tr>
               <th>ID</th>
@@ -78,7 +84,7 @@ const UserListScreen = () => {
                   <Button
                     variant="danger"
                     className="btn-sm"
-                    onClick={() => deleteHandler(user._id)}
+                    onClick={() => deleteHandler(user)}
                   >
                     <i className="fas fa-trash" />
                   </Button>
