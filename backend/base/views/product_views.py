@@ -43,3 +43,11 @@ def getAllCategories(request):
             newproducts.append(row.category)
             lastSeenId = row.category
     return  Response(newproducts)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def deleteProduct(request, pk):
+    product = Product.objects.get(_id=pk)
+    product.delete()
+    return Response('Product was deleted')
+

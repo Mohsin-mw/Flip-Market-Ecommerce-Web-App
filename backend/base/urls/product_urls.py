@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.getProducts, name="products"),
     path('allcategories', views.getAllCategories, name="all-categories"),
     path('category/<str:pk>', views.getProductByCategory, name="category"),
+    path('delete/<str:pk>/', views.deleteProduct, name="delete-product"),
     path('<str:pk>', views.getProduct, name="product"),
 ]

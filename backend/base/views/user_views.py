@@ -93,7 +93,6 @@ def updateUser(request, pk):
     user.is_staff = data['isAdmin']
     user.save()
     serializer = UserSerializer(user, many=False)
-
     return Response(serializer.data)
 
 
@@ -116,3 +115,4 @@ def deleteUser(request, pk):
     userForDeletion = User.objects.get(id=pk)
     userForDeletion.delete()
     return  Response('User was deleted')
+

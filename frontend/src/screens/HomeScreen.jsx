@@ -39,7 +39,6 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(toggleLoading(true));
-
     Load();
   }, []);
 

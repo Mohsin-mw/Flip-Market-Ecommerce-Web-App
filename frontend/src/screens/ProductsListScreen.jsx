@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GetAllUsers, DeleteUser } from "../network/endpoints/User";
+import { DeleteProduct } from "../network/endpoints/Products";
 import {
   allUsersRequest,
   allUsersRequestFailed,
@@ -15,8 +15,6 @@ import { getAllCategoriesList } from "../network/endpoints/Products";
 
 const ProductListScreen = () => {
   const app = useSelector((state) => state.app);
-  const [allCategories, setAllCategories] = useState([]);
-
   const [userDeleteMessage, setUserDeleteMessage] = useState("");
   const { userInfo } = useSelector((state) => state.user);
   const { products } = useSelector((state) => state.productList);
@@ -24,18 +22,15 @@ const ProductListScreen = () => {
   const navigate = useNavigate();
 
   const Load = async () => {
-    await getAllCategoriesList().then((response) =>
-      setAllCategories(response.data)
-    );
     await listProducts(dispatch, "All");
     setTimeout(() => {
       dispatch(toggleLoading(false));
     }, 500);
   };
 
-  const deleteHandler = (user) => {
-    setUserDeleteMessage(`${user.name} was Deleted Successfully`);
-    DeleteUser(userInfo.token, user._id);
+  const deleteHandler = (product) => {
+    setUserDeleteMessage(`${product.name} was Deleted Successfully`);
+    DeleteProduct(userInfo.token, product._id);
   };
 
   const navigationHandler = () => {
@@ -48,7 +43,7 @@ const ProductListScreen = () => {
     } else {
       Load();
     }
-  }, []);
+  }, [dispatch, userDeleteMessage]);
 
   return (
     <div className="page-screen my-5">
@@ -97,7 +92,7 @@ const ProductListScreen = () => {
                   <Button
                     variant="danger"
                     className="btn-sm"
-                    onClick={() => deleteHandler(product._id)}
+                    onClick={() => deleteHandler(product)}
                   >
                     <i className="fas fa-trash" />
                   </Button>
