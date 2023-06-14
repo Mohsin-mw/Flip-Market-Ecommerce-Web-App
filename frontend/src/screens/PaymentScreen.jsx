@@ -19,7 +19,6 @@ const PaymentScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(payment);
     dispatch(savePaymentMethod(payment));
     navigate("/placeorder");
   };

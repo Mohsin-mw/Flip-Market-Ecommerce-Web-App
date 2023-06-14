@@ -30,3 +30,11 @@ export function GetAllUsers(token) {
 export function DeleteUser(token, id) {
   return axiosClientWithToken(token).delete(`/users/delete/${id}/`);
 }
+
+export function GetUser(token, id) {
+  return axiosClientWithToken(token).get(`/users/${id}`);
+}
+
+export function UpdateUser(token, id, user) {
+  return axiosClientWithToken(token).put(`/users/update/${id}/`, user);
+}

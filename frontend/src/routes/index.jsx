@@ -11,7 +11,8 @@ import OrderScreen from "../screens/OrderScreen";
 import OrderSummary from "../screens/OrderSummary";
 import AllOrders from "../screens/AllOrders";
 import UserListScreen from "../screens/UserListScreen";
-
+import User from "../screens/User";
+import ProductsListScreen from "../screens/ProductsListScreen";
 function Router() {
   return (
     <Routes>
@@ -27,6 +28,8 @@ function Router() {
       <Route path="/summary/:id" element={<OrderSummary />} />
       <Route path="/orders" element={<AllOrders />} />
       <Route path="/admin/allusers" element={<UserListScreen />} />
+      <Route path="/admin/users/:id/edit" element={<User />} />
+      <Route path="/admin/allproducts" element={<ProductsListScreen />} />
     </Routes>
   );
 }
