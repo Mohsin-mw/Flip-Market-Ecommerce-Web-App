@@ -22,6 +22,7 @@ const OrderSummary = () => {
   const [createdAt, setCreatedAt] = useState("");
   const [isDelivered, setisDelivered] = useState("");
   const [deliveredTime, setDeliveredTime] = useState("");
+  const [isPaid, setIsPaid] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
   const [shippingPrice, setShippingPrice] = useState("");
   const [taxPrice, setTaxPrice] = useState("");
@@ -33,6 +34,7 @@ const OrderSummary = () => {
 
   const GetOrder = async () => {
     await GetOrderDetails(token, urlId).then((response) => {
+      console.log(response.data);
       setAddress(response.data.shippingAddress.address);
       setCity(response.data.shippingAddress.city);
       setPostalCode(response.data.shippingAddress.postalCode);
@@ -45,6 +47,7 @@ const OrderSummary = () => {
       setShippingPrice(response.data.shippingPrice);
       setTaxPrice(response.data.taxPrice);
       setOrderItems(response.data.orderItems);
+      setIsPaid(response.data.isPaid);
     });
     setTimeout(() => {
       dispatch(toggleLoading(false));
@@ -77,11 +80,6 @@ const OrderSummary = () => {
           <h3 className="mb-5">Order ID: #{urlId}</h3>
 
           <Row>
-            <Alert variant={isDelivered ? "success" : "danger"}>
-              {isDelivered
-                ? `Delivered At ${new Date(deliveredTime).toUTCString()}`
-                : "Not Delivered"}
-            </Alert>
             <Col md>
               <Form.Label>Address</Form.Label>
               <Form.Control
@@ -140,10 +138,25 @@ const OrderSummary = () => {
               />
             </Col>
           </Row>
+          <Row>
+            <Col md>
+              <Form.Label>Delivered</Form.Label>
+              <Alert variant={isDelivered ? "success" : "danger"}>
+                {isDelivered ? "Delivered" : "Not Delivered"}
+              </Alert>
+            </Col>
+            <Col md>
+              <Form.Label>Paid</Form.Label>
+              {console.log(isPaid)}
+              <Alert variant={isPaid ? "success" : "danger"}>
+                {isPaid ? "Paid" : "Not Paid Yet"}
+              </Alert>
+            </Col>
+          </Row>
           <Row className="my-5">
             <h5 className="my-3">Order Items</h5>
             {orderItems.map((orderItem) => (
-              <Row className="my-3">
+              <Row key={orderItem._id} className="my-3">
                 <Col md>
                   <Form.Label>Product Name</Form.Label>
                   <Form.Control

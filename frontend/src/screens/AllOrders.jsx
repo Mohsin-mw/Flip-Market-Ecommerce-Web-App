@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { userLogout } from "../store/Slices/User/UserSlice";
 import { GetAllOrders } from "../network/endpoints/Order";
 import { orderDetailsAll } from "../store/Slices/AllOrders/AllOrdersSlice";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
@@ -15,12 +15,24 @@ const AllOrders = () => {
   const user = useSelector((state) => state.user);
   const app = useSelector((state) => state.app);
   const navigate = useNavigate();
-  const GetOrders = () => {
+  const GetOrders = async () => {
     dispatch(toggleLoading(true));
-    GetAllOrders(user.userInfo.token, user.userInfo).then((response) => {
-      dispatch(orderDetailsAll(response.data));
-      setAllOrders(response.data);
-    });
+    await GetAllOrders(user.userInfo.token, user.userInfo)
+      .then((response) => {
+        console.log(response.status);
+        dispatch(orderDetailsAll(response.data));
+        setAllOrders(response.data);
+      })
+      .catch((error) => {
+        if ((error.response.status = 401)) {
+          const response = JSON.parse(error.response.request.response);
+          if ((response.code = "user_not_found")) {
+            dispatch(userLogout());
+            navigate("");
+          }
+        }
+      });
+
     setTimeout(() => {
       dispatch(toggleLoading(false));
     }, 1000);
@@ -57,13 +69,6 @@ const AllOrders = () => {
             <Card key={element._id} className="p-5 my-3">
               <h3 className="mb-5">Order ID: #{element._id}</h3>
               <Row>
-                <Alert variant={element.isDelivered ? "success" : "danger"}>
-                  {element.isDelivered
-                    ? `Delivered At ${new Date(
-                        element.deliveredAt
-                      ).toUTCString()}`
-                    : "Not Delivered"}
-                </Alert>
                 <Col md>
                   <Form.Label>Address</Form.Label>
                   <Form.Control
@@ -140,6 +145,20 @@ const AllOrders = () => {
                     type="text"
                     placeholder={element.totalPrice + "$"}
                   />
+                </Col>
+              </Row>
+              <Row>
+                <Col md>
+                  <Form.Label>Delivered</Form.Label>
+                  <Alert variant={element.isDelivered ? "success" : "danger"}>
+                    {element.isDelivered ? "Delivered" : "Not Delivered"}
+                  </Alert>
+                </Col>
+                <Col md>
+                  <Form.Label>Paid</Form.Label>
+                  <Alert variant={element.isPaid ? "success" : "danger"}>
+                    {element.isPaid ? "Paid" : "Not Paid Yet"}
+                  </Alert>
                 </Col>
               </Row>
               <Row className="my-5">

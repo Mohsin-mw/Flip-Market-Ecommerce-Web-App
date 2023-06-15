@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { DeleteProduct } from "../network/endpoints/Products";
 import { toggleLoading } from "../store/Slices/App/AppSlice";
 import Loader from "../components/loader";
-import { Table, Button, Alert, Row, Col, Image } from "react-bootstrap";
+import { Table, Button, Alert, Row, Col, Image, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import listProducts from "../store/Slices/Product/ProductFunctions";
-import { CreateProduct } from "../network/endpoints/Products";
+import { UpdateDeliverey, UpdatePayment } from "../network/endpoints/Order";
 import { GetAllAdminOders } from "../network/endpoints/Order";
 
 const AdminOrders = () => {
@@ -30,6 +30,24 @@ const AdminOrders = () => {
 
   const updateProductHandler = (id) => {
     navigate(`/admin/product/${id}/edit`);
+  };
+
+  const PaymentHandler = (e, id) => {
+    const checkboxMethod = e.target.checked;
+    if (checkboxMethod == true) {
+      UpdatePayment(userInfo.token, id, "True");
+    } else if (checkboxMethod == false) {
+      UpdatePayment(userInfo.token, id, "False");
+    }
+  };
+
+  const DeliveryHandler = (e, id) => {
+    const checkboxMethod = e.target.checked;
+    if (checkboxMethod == true) {
+      UpdateDeliverey(userInfo.token, id, "True");
+    } else if (checkboxMethod == false) {
+      UpdateDeliverey(userInfo.token, id, "False");
+    }
   };
 
   useEffect(() => {
@@ -75,24 +93,20 @@ const AdminOrders = () => {
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.totalPrice}$</td>
                 <td>
-                  {order.isPaid ? (
-                    <i
-                      className="fa-solid fa-check"
-                      style={{ color: "green" }}
-                    />
-                  ) : (
-                    <i className="fa-solid fa-xmark" style={{ color: "red" }} />
-                  )}
+                  <Form.Check
+                    type="switch"
+                    id="custom-switch"
+                    defaultChecked={order.isPaid ? "true" : ""}
+                    onChange={(e) => PaymentHandler(e, order._id)}
+                  />
                 </td>
                 <td>
-                  {order.isDelivered ? (
-                    <i
-                      className="fa-solid fa-check"
-                      style={{ color: "green" }}
-                    />
-                  ) : (
-                    <i className="fa-solid fa-xmark" style={{ color: "red" }} />
-                  )}
+                  <Form.Check
+                    type="switch"
+                    id="custom-switch"
+                    defaultChecked={order.isDelivered ? "true" : ""}
+                    onChange={(e) => DeliveryHandler(e, order._id)}
+                  />
                 </td>
                 {/* <td>
                   <Image

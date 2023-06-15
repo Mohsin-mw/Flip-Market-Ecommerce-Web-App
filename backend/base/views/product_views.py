@@ -82,13 +82,9 @@ def getProduct(request, pk):
 @api_view(['GET'])
 def getAllCategories(request):
     products = Product.objects.all().order_by("_id")
-    print(products)
-    print(list(set(products)))
     newproducts = []
-    lastSeenId = ""
     for row in products:
         newproducts.append(row.category.lower())
-    print(newproducts)
     return Response(list(set(newproducts)))
 
 
