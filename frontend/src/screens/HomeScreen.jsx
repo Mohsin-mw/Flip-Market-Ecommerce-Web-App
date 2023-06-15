@@ -20,9 +20,9 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const Load = async () => {
-    await getAllCategoriesList().then((response) =>
-      setAllCategories(response.data)
-    );
+    await getAllCategoriesList().then((response) => {
+      setAllCategories(response.data);
+    });
     await listProducts(dispatch, "All");
     setTimeout(() => {
       dispatch(toggleLoading(false));
@@ -34,7 +34,7 @@ const HomeScreen = () => {
     await listProducts(dispatch, category);
     setTimeout(() => {
       dispatch(toggleLoading(false));
-    }, 3000);
+    }, 2000);
   };
 
   useEffect(() => {

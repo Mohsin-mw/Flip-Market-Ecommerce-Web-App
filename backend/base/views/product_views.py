@@ -20,7 +20,7 @@ def getProducts(request):
 
 @api_view(['GET'])
 def getProductByCategory(request, pk):
-    products = Product.objects.filter(category=pk)
+    products = Product.objects.filter(category=(pk).lower())
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
@@ -62,7 +62,7 @@ def updateProduct(request, pk):
     product.price = data['price']
     product.brand = data['brand']
     product.countInStock = data['countInStock']
-    product.category = data['category']
+    product.category = (data['category']).lower()
     product.description = data['description']
 
     product.save()
@@ -82,15 +82,14 @@ def getProduct(request, pk):
 @api_view(['GET'])
 def getAllCategories(request):
     products = Product.objects.all().order_by("_id")
+    print(products)
+    print(list(set(products)))
     newproducts = []
     lastSeenId = ""
     for row in products:
-        if row.category == lastSeenId:
-              pass
-        else:
-            newproducts.append(row.category)
-            lastSeenId = row.category
-    return  Response(newproducts)
+        newproducts.append(row.category.lower())
+    print(newproducts)
+    return Response(list(set(newproducts)))
 
 
 @api_view(['POST'])
