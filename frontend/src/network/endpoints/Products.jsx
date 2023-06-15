@@ -19,3 +19,11 @@ export function getAllCategoriesList() {
 export function DeleteProduct(token, id) {
   return axiosClientWithToken(token).delete(`/products/delete/${id}/`);
 }
+
+export function CreateProduct(token) {
+  return axiosClientWithToken(token).post("/products/create/");
+}
+
+export function UpdateProduct(token, id, product) {
+  return axiosClientWithToken(token).put(`/products/update/${id}/`, product);
+}
