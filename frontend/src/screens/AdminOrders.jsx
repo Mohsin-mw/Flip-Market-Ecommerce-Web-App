@@ -8,41 +8,24 @@ import { Table, Button, Alert, Row, Col, Image } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import listProducts from "../store/Slices/Product/ProductFunctions";
 import { CreateProduct } from "../network/endpoints/Products";
+import { GetAllAdminOders } from "../network/endpoints/Order";
 
-const ProductListScreen = () => {
+const AdminOrders = () => {
   const app = useSelector((state) => state.app);
   const [userMessage, setUserMessage] = useState("");
+  const [allOders, setAllOrders] = useState([]);
   const { userInfo } = useSelector((state) => state.user);
-  const { products } = useSelector((state) => state.productList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const Load = async () => {
+    GetAllAdminOders(userInfo.token).then((response) => {
+      setAllOrders(response.data);
+    });
     await listProducts(dispatch, "All");
     setTimeout(() => {
       dispatch(toggleLoading(false));
     }, 500);
-  };
-
-  const deleteHandler = (product) => {
-    setUserMessage(`${product.name} was Deleted Successfully`);
-    DeleteProduct(userInfo.token, product._id);
-    setTimeout(() => {
-      setUserMessage("");
-    }, 2000);
-  };
-
-  const navigationHandler = () => {
-    navigate(-1);
-  };
-
-  const createProductHandler = () => {
-    CreateProduct(userInfo.token).then((response) =>
-      setUserMessage("New Product Created!")
-    );
-    setTimeout(() => {
-      setUserMessage("");
-    }, 2000);
   };
 
   const updateProductHandler = (id) => {
@@ -60,13 +43,7 @@ const ProductListScreen = () => {
   return (
     <div className="page-screen my-5">
       <Row className="align-items-center">
-        <Col md>Products</Col>
-        <Col md className="d-flex align-content-center justify-content-end">
-          <Button onClick={createProductHandler}>
-            Add Product
-            <i className="fas fa-plus mx-2" />
-          </Button>
-        </Col>
+        <Col md>ORDERS</Col>
       </Row>
       {userMessage == "" ? (
         ""
@@ -82,43 +59,55 @@ const ProductListScreen = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NAME</th>
-              <th>PRICE</th>
-              <th>CATEGORY</th>
-              <th>BRAND</th>
-              <th>IMAGE</th>
+              <th>USER</th>
+              <th>DATE</th>
+              <th>TOTAL</th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>{product.price}$</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
+            {allOders.map((order) => (
+              <tr key={order._id}>
+                <td>{order._id}</td>
+                <td>{order.user.username}</td>
+                <td>{order.createdAt.substring(0, 10)}</td>
+                <td>{order.totalPrice}$</td>
                 <td>
+                  {order.isPaid ? (
+                    <i
+                      className="fa-solid fa-check"
+                      style={{ color: "green" }}
+                    />
+                  ) : (
+                    <i className="fa-solid fa-xmark" style={{ color: "red" }} />
+                  )}
+                </td>
+                <td>
+                  {order.isDelivered ? (
+                    <i
+                      className="fa-solid fa-check"
+                      style={{ color: "green" }}
+                    />
+                  ) : (
+                    <i className="fa-solid fa-xmark" style={{ color: "red" }} />
+                  )}
+                </td>
+                {/* <td>
                   <Image
                     rounded
                     fluid
                     src={app.serverUrl + product.image}
                     width="50px"
                   />
-                </td>
+                </td> */}
                 <td className="d-flex align-content-center justify-content-end">
-                  <LinkContainer to={`/admin/products/${product._id}/edit`}>
+                  <LinkContainer to={`/summary/id:${order._id}`}>
                     <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit" />
+                      DETAILS
                     </Button>
                   </LinkContainer>
-                  <Button
-                    variant="danger"
-                    className="btn-sm"
-                    onClick={() => deleteHandler(product)}
-                  >
-                    <i className="fas fa-trash" />
-                  </Button>
                 </td>
               </tr>
             ))}
@@ -129,4 +118,4 @@ const ProductListScreen = () => {
   );
 };
 
-export default ProductListScreen;
+export default AdminOrders;

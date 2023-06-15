@@ -14,6 +14,7 @@ import UserListScreen from "../screens/UserListScreen";
 import User from "../screens/User";
 import ProductsListScreen from "../screens/ProductsListScreen";
 import ProductEditScreen from "../screens/ProductEditScreen";
+import AdminOrders from "../screens/AdminOrders";
 function Router() {
   return (
     <Routes>
@@ -32,6 +33,7 @@ function Router() {
       <Route path="/admin/users/:id/edit" element={<User />} />
       <Route path="/admin/allproducts" element={<ProductsListScreen />} />
       <Route path="/admin/products/:id/edit" element={<ProductEditScreen />} />
+      <Route path="/admin/allorders" element={<AdminOrders />} />
     </Routes>
   );
 }

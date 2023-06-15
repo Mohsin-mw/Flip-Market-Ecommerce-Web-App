@@ -174,6 +174,7 @@ const ProductEditScreen = () => {
                     <Form.Control type="file" onChange={uploadHandler} />
                   </Form.Group>
                 </Col>
+
                 <Button className="my-2" onClick={updateHandler}>
                   Update
                 </Button>

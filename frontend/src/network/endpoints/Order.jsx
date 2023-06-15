@@ -11,3 +11,7 @@ export function GetOrderDetails(token, id) {
 export function GetAllOrders(token, user) {
   return axiosClientWithToken(token).get("/orders/allorders/", user);
 }
+
+export function GetAllAdminOders(token) {
+  return axiosClientWithToken(token).get("/orders/");
+}
