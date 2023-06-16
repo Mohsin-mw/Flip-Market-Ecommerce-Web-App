@@ -33,53 +33,22 @@ Ecommerce web app created using React and Djanog Rest Framework
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/repo_name">
+    <img src="https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/f83e5c9f-10f0-47a0-b9e0-33e8bb45c375" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Flip Market</h3>
 
   <p align="center">
-    project_description
+    An Ecommerce website created with React and Django
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    
+  
   </p>
 </div>
 
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
 
 
@@ -89,22 +58,8 @@ Ecommerce web app created using React and Djanog Rest Framework
 ![FireShot Capture 002 - Flip Market - localhost](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/0bf545f0-945c-4599-9417-af9765939015)
 
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 ### Built With
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+[![My Skills](https://skillicons.dev/icons?i=react,django,bootstrap)](https://skillicons.dev)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,30 +73,54 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
-  npm install npm@latest -g
+  npm install 
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App
    ```
-3. Install NPM packages
+2. Navigate Into Root Directory
    ```sh
-   npm install
+   cd Flip-Market-Ecommerce-Web-App
    ```
-4. Enter your API in `config.js`
+ 
+3. Create virtual environment
+   ```sh
+   virtualenv myenv
+   ```
+ 
+4. Activate virtual environment
+   ```sh
+    myenv\scripts\activate
+   ```
+5. Install Requirements
+   ```sh
+    pip install -r requirements.txt
+   ```
+5. Run Django Server
+   ```sh
+    python manage.py runserver
+   ```
+
+5. Navigate to Frontend Directory
+   ```sh
+     cd .. 
+     cd frontend
+   ```
+   
+6. Install NPM packages
+   ```sh
+     npm install
+   ```
+4. Run React Server
    ```js
-   const API_KEY = 'ENTER YOUR API';
+     npm run dev
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
