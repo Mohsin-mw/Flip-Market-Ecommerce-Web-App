@@ -11,5 +11,6 @@ urlpatterns = [
     path('upload/', views.uploadImage, name="image-upload"),
     path('update/<str:pk>/', views.updateProduct, name="update-product"),
     path('delete/<str:pk>/', views.deleteProduct, name="delete-product"),
+    path('<str:pk>/reviews/', views.createReview, name="create-review"),
     path('<str:pk>', views.getProduct, name="product"),
 ]

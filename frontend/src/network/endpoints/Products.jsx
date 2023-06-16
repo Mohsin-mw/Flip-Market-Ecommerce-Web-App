@@ -27,3 +27,7 @@ export function CreateProduct(token) {
 export function UpdateProduct(token, id, product) {
   return axiosClientWithToken(token).put(`/products/update/${id}/`, product);
 }
+
+export function AddReview(token, id, review) {
+  return axiosClientWithToken(token).post(`/products/${id}/reviews/`, review);
+}
