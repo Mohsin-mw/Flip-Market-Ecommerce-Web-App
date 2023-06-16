@@ -1,6 +1,5 @@
 # Flip-Market-Ecommerce-Web-App
 Ecommerce web app created using React and Djanog Rest Framework
-![FireShot Capture 002 - Flip Market - localhost](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/0bf545f0-945c-4599-9417-af9765939015)
 
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
@@ -87,7 +86,8 @@ Ecommerce web app created using React and Djanog Rest Framework
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![FireShot Capture 002 - Flip Market - localhost](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/0bf545f0-945c-4599-9417-af9765939015)
+
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
