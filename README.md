@@ -8,7 +8,7 @@ Welcome to my ecommerce website created with React and Django! This website is d
 <br />
 <div align="center">
   <a href="https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/repo_name">
-    <img src="https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/f83e5c9f-10f0-47a0-b9e0-33e8bb45c375" alt="Logo" width="80" height="80">
+    <img src="https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/eca752f4-c729-42f9-a9ab-9c9962552e1f" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Flip Market</h3>
