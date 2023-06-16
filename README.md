@@ -1,5 +1,5 @@
 # Flip-Market-Ecommerce-Web-App
-Welcome to my ecommerce website created with React and Django! This website is designed to provide a convenient and secure shopping experience for customers. The React front-end provides a smooth and intuitive user experience, while the Django back-end ensures that all data is stored securely and efficiently. Customers can easily browse through our selection of products, add items to their cart, and check out securely with their payment information. We also provide a variety of shipping options, so customers can get their orders quickly and safely. Additionally, customers can easily manage their orders and accounts through our user-friendly dashboard. Our customer service team is always available to answer any questions or concerns customers may have. Thank you for choosing our ecommerce website for your shopping needs!
+Flip Market is an ecommerce website created with React and Django! This website is designed to provide a convenient and secure shopping experience for customers. The React front-end provides a smooth and intuitive user experience, while the Django back-end ensures that all data is stored securely and efficiently. Customers can easily browse through our selection of products, add items to their cart, and check out their payment information. It also provide an admin dashboard, so admin can manage website easily. Additionally, customers can easily manage their orders and accounts through its user-friendly dashboard. 
 
 <a name="readme-top"></a>
 
@@ -24,7 +24,7 @@ Welcome to my ecommerce website created with React and Django! This website is d
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![FireShot Capture 003 - Flip Market - localhost](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/4caea260-2989-4a09-8ecd-80226c6b41b0)
+![thumbnail](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/418d5f77-e89e-4e97-96a9-bac3cf1da1e1)
 
 
 ### Built With
