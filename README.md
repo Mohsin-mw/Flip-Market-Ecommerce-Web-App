@@ -24,7 +24,8 @@ Flip Market is an ecommerce website created with React and Django! This website 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![thumbnail](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/418d5f77-e89e-4e97-96a9-bac3cf1da1e1)
+![thumbnailmain](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/30bd5541-6a8a-4f7a-b262-ac993386c005)
+
 
 
 ### Built With
