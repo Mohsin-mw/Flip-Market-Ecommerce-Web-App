@@ -31,7 +31,6 @@ Welcome to my ecommerce website created with React and Django! This website is d
 ### Built With
 [![My Skills](https://skillicons.dev/icons?i=react,django,bootstrap)](https://skillicons.dev)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
