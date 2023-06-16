@@ -24,8 +24,7 @@ Welcome to my ecommerce website created with React and Django! This website is d
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-![FireShot Capture 002 - Flip Market - localhost](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/0bf545f0-945c-4599-9417-af9765939015)
+![FireShot Capture 003 - Flip Market - localhost](https://github.com/Mohsin-mw/Flip-Market-Ecommerce-Web-App/assets/122507740/4caea260-2989-4a09-8ecd-80226c6b41b0)
 
 
 ### Built With
