@@ -58,12 +58,6 @@ const Sidebar = () => {
             <NavLink to="/orders">
               <CDBSidebarMenuItem icon="chart-line">Orders</CDBSidebarMenuItem>
             </NavLink>
-
-            <NavLink to="/hero404" target="_blank">
-              <CDBSidebarMenuItem icon="exclamation-circle">
-                404 page
-              </CDBSidebarMenuItem>
-            </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 

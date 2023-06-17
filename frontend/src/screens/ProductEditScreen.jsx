@@ -32,7 +32,9 @@ const ProductEditScreen = () => {
       setName(response.data.name);
       setBrand(response.data.brand);
       setCategory(response.data.category);
-      setCountInStock(response.data.countInStock);
+      setCountInStock(
+        response.data.countInStock < 0 ? 0 : response.data.countInStock
+      );
       setDescription(response.data.description);
       setPrice(response.data.price);
       setImage(response.data.image);
